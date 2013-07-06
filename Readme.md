@@ -98,14 +98,14 @@ $ component install shannonmoeller/handlebars-layouts
 ```js
 // Load modules
 var Handlebars = require('handlebars');
-var layoutHelpers = require('handlebars-layouts');
+var handlebarsLayouts = require('handlebars-layouts');
 
 // Read templates
 var layout = fs.readFileSync('layout.html', 'utf8');
 var template = fs.readFileSync('template.html', 'uft8');
 
 // Register layout helpers
-layoutHelpers(Handlebars);
+handlebarsLayouts(Handlebars);
 
 // Register layout partial
 Handlebars.registerPartial('layout', layout);

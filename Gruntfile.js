@@ -40,8 +40,9 @@ module.exports = function (grunt) {
 
         // Test scripts
         simplemocha: {
-            all: ['test/all.js'],
-            options: { reporter: 'spec' }
+            options: { reporter: 'spec' },
+
+            all: ['test/all.js']
         },
 
         /**
@@ -54,14 +55,13 @@ module.exports = function (grunt) {
                 '<%= pkg.name %>.js',
                 'test/all.js'
             ],
+
             node: ['node_modules']
         },
 
         // File watching
         watch: {
-            options: {
-                livereload: true,
-            },
+            options: { livereload: true },
 
             js: {
                 files: [

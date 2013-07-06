@@ -1,12 +1,22 @@
 {
   "name": "handlebars-layouts",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "description": "Handlebars helpers which implement Jade-like layout blocks.",
+  "keywords": [
+      "dust",
+      "express",
+      "handlebars",
+      "jade",
+      "layout",
+      "mote",
+      "mustache"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "http://github.com/shannonmoeller/grunt-demo.git"
   },
-  "main": "handlebars-layouts.js",
+  "main": "lib/handlebars-layouts.js",
   "devDependencies": {
     "brfs": "*",
     "grunt": "*",

@@ -1,0 +1,18 @@
+{
+  "name": "handlebars-layouts",
+  "version": "0.1.1",
+  "description": "Handlebars helpers which implement Jade-like layout blocks.",
+  "keywords": [
+      "dust",
+      "express",
+      "handlebars",
+      "jade",
+      "layout",
+      "mote",
+      "mustache"
+  ],
+  "license": "MIT",
+  "repo": "shannonmoeller/grunt-demo",
+  "main": "lib/handlebars-layouts.js",
+  "scripts": ["lib/handlebars-layouts.js"]
+}
