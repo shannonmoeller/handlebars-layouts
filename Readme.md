@@ -88,7 +88,7 @@ $ component install shannonmoeller/handlebars-layouts
     {{/replace}}
 
     {{#prepend "foot"}}
-        <script src="assets/js/analyitics.js"></script>
+        <script src="assets/js/analytics.js"></script>
     {{/prepend}}
 {{/extend}}
 ```
@@ -158,7 +158,7 @@ console.log(
             </div>
         </div>
 
-        <script src="assets/js/analyitics.js"></script>
+        <script src="assets/js/analytics.js"></script>
         <script src="assets/js/controllers/home.js"></script>
     </body>
 </html>
