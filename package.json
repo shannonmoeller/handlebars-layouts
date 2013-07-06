@@ -1,0 +1,48 @@
+{
+  "name": "handlebars-layouts",
+  "version": "0.1.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/shannonmoeller/grunt-demo.git"
+  },
+  "main": "handlebars-layouts.js",
+  "devDependencies": {
+    "brfs": "*",
+    "grunt": "*",
+    "grunt-browserify": "*",
+    "grunt-contrib-clean": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-simple-mocha": "*",
+    "handlebars": "*",
+    "mocha": "*"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "testling": {
+    "harness": "mocha",
+    "scripts": "test/all.js",
+    "browsers": [
+      "chrome/24.0",
+      "chrome/25.0",
+      "chrome/canary",
+      "firefox/18.0",
+      "firefox/19.0",
+      "firefox/nightly",
+      "iexplore/8.0",
+      "iexplore/9.0",
+      "iexplore/10.0",
+      "opera/11.6",
+      "opera/12.0",
+      "opera/next",
+      "safari/5.0.5",
+      "safari/5.1",
+      "safari/6.0",
+      "iphone/6.0",
+      "ipad/6.0",
+      "android-browser/4.2"
+    ]
+  }
+}
