@@ -175,3 +175,5 @@ $ grunt test
 ## License
 
 MIT
+
+![Bitdeli](https://d2weczhvl823v0.cloudfront.net/shannonmoeller/handlebars-layouts/trend.png)
