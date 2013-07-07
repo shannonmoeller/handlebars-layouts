@@ -176,4 +176,4 @@ $ grunt test
 
 MIT
 
-![Bitdeli](https://d2weczhvl823v0.cloudfront.net/shannonmoeller/handlebars-layouts/trend.png)
+[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/ae3a06cc73fded765f8492d78c66ad30 "githalytics.com")](http://githalytics.com/shannonmoeller/handlebars-layouts)
