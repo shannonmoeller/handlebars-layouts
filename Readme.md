@@ -17,7 +17,7 @@ $ npm install handlebars-layouts
 #### ([bower](http://bower.io/)):
 
 ```sh
-$ bower install shannonmoeller/handlebars-layouts
+$ bower install handlebars-layouts
 ```
 
 #### ([component(1)](http://component.io)):
