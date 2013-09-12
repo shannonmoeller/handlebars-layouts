@@ -96,26 +96,29 @@ $ component install shannonmoeller/handlebars-layouts
 ### Putting Them Together
 
 ```js
-// Load modules
+// Load Handlebars
 var Handlebars = require('handlebars');
+
+// Register helpers
 var handlebarsLayouts = require('handlebars-layouts')(Handlebars);
 
-// Register layout partial
+// Register partials
 Handlebars.registerPartial('layout', fs.readFileSync('layout.html', 'utf8'));
 
 // Compile
 var template = Handlebars.compile(fs.readFileSync('template.html', 'uft8'));
-var data = {
+
+// Render template
+var output = template({
     title: 'Layout Test',
     items: [
         'apple',
         'orange',
         'banana'
     ]
-};
+});
 
-// Render and output template
-console.log(template(data));
+console.log(output);
 ```
 
 ### Output (prettified for readability)
