@@ -105,18 +105,17 @@ Handlebars.registerPartial('layout', fs.readFileSync('layout.html', 'utf8'));
 
 // Compile
 var template = Handlebars.compile(fs.readFileSync('template.html', 'uft8'));
+var data = {
+    title: 'Layout Test',
+    items: [
+        'apple',
+        'orange',
+        'banana'
+    ]
+};
 
 // Render and output template
-console.log(
-    template({
-        title: 'Layout Test',
-        items: [
-            'apple',
-            'orange',
-            'banana'
-        ]
-    })
-);
+console.log(template(data));
 ```
 
 ### Output (prettified for readability)
