@@ -17,7 +17,7 @@ $ npm install handlebars-layouts
 #### ([bower](http://bower.io/)):
 
 ```sh
-$ bower install shannonmoeller/handlebars-layouts
+$ bower install handlebars-layouts
 ```
 
 #### ([component(1)](http://component.io)):
@@ -96,34 +96,29 @@ $ component install shannonmoeller/handlebars-layouts
 ### Putting Them Together
 
 ```js
-// Load modules
+// Load Handlebars
 var Handlebars = require('handlebars');
-var handlebarsLayouts = require('handlebars-layouts');
 
-// Read templates
-var layout = fs.readFileSync('layout.html', 'utf8');
-var template = fs.readFileSync('template.html', 'uft8');
+// Register helpers
+var handlebarsLayouts = require('handlebars-layouts')(Handlebars);
 
-// Register layout helpers
-handlebarsLayouts(Handlebars);
-
-// Register layout partial
-Handlebars.registerPartial('layout', layout);
+// Register partials
+Handlebars.registerPartial('layout', fs.readFileSync('layout.html', 'utf8'));
 
 // Compile
-var renderer = Handlebars.compile(template);
+var template = Handlebars.compile(fs.readFileSync('template.html', 'uft8'));
 
-// Render and output template
-console.log(
-    renderer({
-        title: 'Layout Test',
-        items: [
-            'apple',
-            'orange',
-            'banana'
-        ]
-    })
-);
+// Render template
+var output = template({
+    title: 'Layout Test',
+    items: [
+        'apple',
+        'orange',
+        'banana'
+    ]
+});
+
+console.log(output);
 ```
 
 ### Output (prettified for readability)
@@ -175,3 +170,5 @@ $ grunt test
 ## License
 
 MIT
+
+[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/ae3a06cc73fded765f8492d78c66ad30 "githalytics.com")](http://githalytics.com/shannonmoeller/handlebars-layouts)
