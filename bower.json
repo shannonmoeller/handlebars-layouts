@@ -1,6 +1,6 @@
 {
   "name": "handlebars-layouts",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "main": "handlebars-layouts.js",
-  "ignore": ["./!(handlebars*.js)"]
+  "ignore": ["./!(handlebars-layouts.js)"]
 }
