@@ -132,7 +132,6 @@ console.log(output);
     <link rel="stylesheet" href="assets/css/screen.css" />
     <link rel="stylesheet" href="assets/css/home.css" />
 </head>
-
 <body>
     <div class="site">
         <div class="site-hd" role="banner">
