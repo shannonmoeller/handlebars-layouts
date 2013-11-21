@@ -126,36 +126,36 @@ console.log(output);
 ```html
 <!doctype html>
 <html lang="en-us">
-    <head>
-        <title>Layout Test</title>
+<head>
+    <title>Layout Test</title>
 
-        <link rel="stylesheet" href="assets/css/screen.css" />
-        <link rel="stylesheet" href="assets/css/home.css" />
-    </head>
+    <link rel="stylesheet" href="assets/css/screen.css" />
+    <link rel="stylesheet" href="assets/css/home.css" />
+</head>
 
-    <body>
-        <div class="site">
-            <div class="site-hd" role="banner">
-                <h1>Layout Test</h1>
-            </div>
-
-            <div class="site-bd" role="main">
-                <h2>Welcome Home</h2>
-                <ul>
-                    <li>apple</li>
-                    <li>orange</li>
-                    <li>banana</li>
-                </ul>
-            </div>
-
-            <div class="site-ft" role="contentinfo">
-                <small>&copy; 2013</small>
-            </div>
+<body>
+    <div class="site">
+        <div class="site-hd" role="banner">
+            <h1>Layout Test</h1>
         </div>
 
-        <script src="assets/js/analytics.js"></script>
-        <script src="assets/js/controllers/home.js"></script>
-    </body>
+        <div class="site-bd" role="main">
+            <h2>Welcome Home</h2>
+            <ul>
+                <li>apple</li>
+                <li>orange</li>
+                <li>banana</li>
+            </ul>
+        </div>
+
+        <div class="site-ft" role="contentinfo">
+            <small>&copy; 2013</small>
+        </div>
+    </div>
+
+    <script src="assets/js/analytics.js"></script>
+    <script src="assets/js/controllers/home.js"></script>
+</body>
 </html>
 ```
 
