@@ -33,39 +33,38 @@ $ component install shannonmoeller/handlebars-layouts
 ```html
 <!doctype html>
 <html lang="en-us">
-    <head>
-        {{#block "head"}}
-            <title>{{title}}</title>
+<head>
+    {{#block "head"}}
+        <title>{{title}}</title>
 
-            <link rel="stylesheet" href="assets/css/screen.css" />
-        {{/block}}
-    </head>
-
-    <body>
-        <div class="site">
-            <div class="site-hd" role="banner">
-                {{#block "header"}}
-                    <h1>{{title}}</h1>
-                {{/block}}
-            </div>
-
-            <div class="site-bd" role="main">
-                {{#block "body"}}
-                    <h2>Hello World</h2>
-                {{/block}}
-            </div>
-
-            <div class="site-ft" role="contentinfo">
-                {{#block "footer"}}
-                    <small>&copy; 2013</small>
-                {{/block}}
-            </div>
+        <link rel="stylesheet" href="assets/css/screen.css" />
+    {{/block}}
+</head>
+<body>
+    <div class="site">
+        <div class="site-hd" role="banner">
+            {{#block "header"}}
+                <h1>{{title}}</h1>
+            {{/block}}
         </div>
 
-        {{#block "foot"}}
-            <script src="assets/js/controllers/home.js"></script>
-        {{/block}}
-    </body>
+        <div class="site-bd" role="main">
+            {{#block "body"}}
+                <h2>Hello World</h2>
+            {{/block}}
+        </div>
+
+        <div class="site-ft" role="contentinfo">
+            {{#block "footer"}}
+                <small>&copy; 2013</small>
+            {{/block}}
+        </div>
+    </div>
+
+    {{#block "foot"}}
+        <script src="assets/js/controllers/home.js"></script>
+    {{/block}}
+</body>
 </html>
 ```
 
