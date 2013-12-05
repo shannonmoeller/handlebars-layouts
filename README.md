@@ -154,7 +154,7 @@ console.log(output);
 
 ## Test
 
-    $ grunt test
+    $ npm test
 
 [![browser support](http://ci.testling.com/shannonmoeller/handlebars-layouts.png)](http://ci.testling.com/shannonmoeller/handlebars-layouts)
 
