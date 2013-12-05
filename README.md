@@ -1,30 +1,25 @@
-# Handlebars Layouts [![Build Status](https://travis-ci.org/shannonmoeller/handlebars-layouts.png)](https://travis-ci.org/shannonmoeller/handlebars-layouts)
+# Handlebars Layouts
 
 > Handlebars helpers which implement Jade-like layout blocks.
 
-## Installation
+[![Build Status](https://travis-ci.org/shannonmoeller/handlebars-layouts.png?branch=master)](https://travis-ci.org/shannonmoeller/handlebars-layouts)
+[![NPM version](https://badge.fury.io/js/handlebars-layouts.png)](http://badge.fury.io/js/handlebars-layouts)
+[![Dependency Status](https://gemnasium.com/shannonmoeller/handlebars-layouts.png)](https://gemnasium.com/shannonmoeller/handlebars-layouts)
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/shannonmoeller/handlebars-layouts/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
-### Server-side
+## Install
 
-#### ([Node.js](http://nodejs.org)):
+With [Node.js](http://nodejs.org):
 
-```sh
-$ npm install handlebars-layouts
-```
+    $ npm install handlebars-layouts
 
-### Client-side
+With [Bower](http://bower.io/):
 
-#### ([bower](http://bower.io/)):
+    $ bower install handlebars-layouts
 
-```sh
-$ bower install handlebars-layouts
-```
+With [Component](http://component.io):
 
-#### ([component(1)](http://component.io)):
-
-```sh
-$ component install shannonmoeller/handlebars-layouts
-```
+    $ component install shannonmoeller/handlebars-layouts
 
 ## Example
 
@@ -157,16 +152,12 @@ console.log(output);
 </html>
 ```
 
-## Testing
+## Test
 
-```sh
-$ grunt test
-```
+    $ grunt test
 
 [![browser support](http://ci.testling.com/shannonmoeller/handlebars-layouts.png)](http://ci.testling.com/shannonmoeller/handlebars-layouts)
 
 ## License
 
 MIT
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/shannonmoeller/handlebars-layouts/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
