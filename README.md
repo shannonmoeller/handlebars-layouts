@@ -94,12 +94,12 @@ With [Component](http://component.io):
 var Handlebars = require('handlebars');
 
 // Register helpers
-var handlebarsLayouts = require('handlebars-layouts')(Handlebars);
+require('handlebars-layouts')(Handlebars);
 
 // Register partials
 Handlebars.registerPartial('layout', fs.readFileSync('layout.html', 'utf8'));
 
-// Compile
+// Compile template
 var template = Handlebars.compile(fs.readFileSync('template.html', 'uft8'));
 
 // Render template
