@@ -13,7 +13,7 @@ With [Node.js](http://nodejs.org):
 
     $ npm install handlebars-layouts
 
-With [Bower](http://bower.io/):
+With [Bower](http://bower.io):
 
     $ bower install handlebars-layouts
 
