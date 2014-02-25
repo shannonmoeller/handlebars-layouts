@@ -5,6 +5,7 @@
 [![Build Status](https://travis-ci.org/shannonmoeller/handlebars-layouts.png?branch=master)](https://travis-ci.org/shannonmoeller/handlebars-layouts)
 [![NPM version](https://badge.fury.io/js/handlebars-layouts.png)](http://badge.fury.io/js/handlebars-layouts)
 [![Dependency Status](https://gemnasium.com/shannonmoeller/handlebars-layouts.png)](https://gemnasium.com/shannonmoeller/handlebars-layouts)
+[![Stories in Ready](http://badge.waffle.io/shannonmoeller/handlebars-layouts.png)](http://waffle.io/shannonmoeller/handlebars-layouts)
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/shannonmoeller/handlebars-layouts/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 ## Install
