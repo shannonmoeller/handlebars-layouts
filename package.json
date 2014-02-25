@@ -33,7 +33,7 @@
   },
   "testling": {
     "harness": "mocha",
-    "scripts": "test/all.js",
+    "files": "test/all.js",
     "browsers": [
       "chrome/30.0..latest",
       "chrome/canary",
