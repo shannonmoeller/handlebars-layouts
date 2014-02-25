@@ -33,18 +33,15 @@
   },
   "testling": {
     "harness": "mocha",
-    "files": "test/all.js",
+    "scripts": "test/all.js",
     "browsers": [
-      "chrome/30..latest",
-      "chrome/canary",
-      "firefox/24..latest",
-      "firefox/nightly",
-      "iexplore/8..latest",
-      "opera/16..latest",
-      "opera/next",
-      "safari/5..latest",
-      "iphone/latest",
-      "ipad/latest",
+      "ie/6..latest",
+      "chrome/22..latest",
+      "firefox/16..latest",
+      "safari/latest",
+      "opera/11.0..latest",
+      "iphone/6",
+      "ipad/6",
       "android-browser/latest"
     ]
   }
