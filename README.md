@@ -156,7 +156,7 @@ console.log(output);
 
     $ npm test
 
-[![browser support](http://ci.testling.com/shannonmoeller/handlebars-layouts.png)](http://ci.testling.com/shannonmoeller/handlebars-layouts)
+[![browser support](https://ci.testling.com/shannonmoeller/handlebars-layouts.png)](https://ci.testling.com/shannonmoeller/handlebars-layouts)
 
 ## License
 
