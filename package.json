@@ -38,8 +38,8 @@
       "chrome/28..latest",
       "firefox/23..latest",
       "ie/9..latest",
-      "safari/5..latest",
-      "opera/12..latest",
+      "safari/latest",
+      "opera/latest",
       "iphone/latest",
       "ipad/latest",
       "android-browser/latest"
