@@ -18,15 +18,15 @@
   },
   "main": "lib/handlebars-layouts.js",
   "devDependencies": {
-    "brfs": "*",
-    "grunt": "*",
-    "grunt-browserify": "*",
-    "grunt-contrib-clean": "*",
-    "grunt-contrib-jshint": "*",
-    "grunt-contrib-watch": "*",
-    "grunt-simple-mocha": "*",
-    "handlebars": "*",
-    "mocha": "*"
+    "brfs": "~0.2",
+    "grunt": "~0.4",
+    "grunt-browserify": "~1.3",
+    "grunt-contrib-clean": "~0.5",
+    "grunt-contrib-jshint": "~0.8",
+    "grunt-contrib-watch": "~0.5",
+    "grunt-simple-mocha": "~0.4",
+    "handlebars": "~2.0",
+    "mocha": "~1.17"
   },
   "scripts": {
     "test": "grunt test"
@@ -35,23 +35,17 @@
     "harness": "mocha",
     "scripts": "test/all.js",
     "browsers": [
-      "chrome/30.0",
-      "chrome/31.0",
+      "chrome/30.0..latest",
       "chrome/canary",
-      "firefox/24.0",
-      "firefox/25.0",
+      "firefox/24.0..latest",
       "firefox/nightly",
-      "iexplore/8.0",
-      "iexplore/9.0",
-      "iexplore/10.0",
-      "opera/16.0",
-      "opera/17.0",
+      "iexplore/8.0..latest",
+      "opera/16.0..latest",
       "opera/next",
-      "safari/5.1",
-      "safari/6.0",
-      "iphone/6.0",
-      "ipad/6.0",
-      "android-browser/4.2"
+      "safari/5.1..latest",
+      "iphone/latest",
+      "ipad/latest",
+      "android-browser/latest"
     ]
   }
 }
