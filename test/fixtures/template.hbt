@@ -13,6 +13,22 @@
         </ul>
     {{/replace}}
 
+    {{#replace "footer"}}
+        <small>&copy; 2014</small>
+    {{/replace}}
+
+    {{#append "footer"}}
+        <div>foo</div>
+    {{/append}}
+
+    {{#append "footer"}}
+        <div>bar</div>
+    {{/append}}
+
+    {{#prepend "footer"}}
+        <div>baz</div>
+    {{/prepend}}
+
     {{#prepend "foot"}}
         <script src="assets/js/analytics.js"></script>
     {{/prepend}}
