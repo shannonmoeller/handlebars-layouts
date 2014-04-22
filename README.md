@@ -2,10 +2,10 @@
 
 > Handlebars helpers which implement Jade-like layout blocks.
 
-[![Build Status](https://travis-ci.org/shannonmoeller/handlebars-layouts.png?branch=master)](https://travis-ci.org/shannonmoeller/handlebars-layouts)
 [![NPM version](https://badge.fury.io/js/handlebars-layouts.png)](http://badge.fury.io/js/handlebars-layouts)
-[![Dependency Status](https://gemnasium.com/shannonmoeller/handlebars-layouts.png)](https://gemnasium.com/shannonmoeller/handlebars-layouts)
-[![Stories in Ready](http://badge.waffle.io/shannonmoeller/handlebars-layouts.png)](http://waffle.io/shannonmoeller/handlebars-layouts)
+[![Build Status](https://travis-ci.org/shannonmoeller/handlebars-layouts.png?branch=master)](https://travis-ci.org/shannonmoeller/handlebars-layouts)
+[![Coverage Status](https://coveralls.io/repos/shannonmoeller/handlebars-layouts/badge.png?branch=master)](https://coveralls.io/r/shannonmoeller/handlebars-layouts?branch=master)
+[![Dependency Status](https://david-dm.org/shannonmoeller/handlebars-layouts.png?theme=shields.io)](https://david-dm.org/shannonmoeller/handlebars-layouts)
 
 ## Install
 
@@ -155,8 +155,6 @@ console.log(output);
 ## Test
 
     $ npm test
-
-[![browser support](https://ci.testling.com/shannonmoeller/handlebars-layouts.png)](https://ci.testling.com/shannonmoeller/handlebars-layouts)
 
 ## License
 
