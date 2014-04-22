@@ -1,6 +1,7 @@
 {
   "name": "handlebars-layouts",
-  "version": "0.2.0",
-  "main": "handlebars-layouts.js",
-  "ignore": ["./!(handlebars-layouts.js)"]
+  "version": "0.3.0",
+  "description": "Handlebars helpers which implement Jade-like layout blocks.",
+  "main": "dist/handlebars-layouts.js",
+  "ignore": ["/*", "/*/", "!/dist/handlebars-layouts.js"]
 }

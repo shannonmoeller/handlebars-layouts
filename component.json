@@ -1,6 +1,6 @@
 {
   "name": "handlebars-layouts",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Handlebars helpers which implement Jade-like layout blocks.",
   "keywords": [
       "dust",
@@ -13,6 +13,6 @@
   ],
   "license": "MIT",
   "repo": "shannonmoeller/handlebars-layouts",
-  "main": "lib/handlebars-layouts.js",
-  "scripts": ["lib/handlebars-layouts.js"]
+  "main": "index.js",
+  "scripts": ["index.js"]
 }

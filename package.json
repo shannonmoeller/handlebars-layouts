@@ -1,48 +1,44 @@
 {
   "name": "handlebars-layouts",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Handlebars helpers which implement Jade-like layout blocks.",
   "keywords": [
-      "dust",
-      "express",
-      "handlebars",
-      "jade",
-      "layout",
-      "mote",
-      "mustache"
+    "blocks",
+    "dust",
+    "express",
+    "handlebars",
+    "jade",
+    "layout",
+    "mote",
+    "mustache"
   ],
+  "homepage": "https://github.com/shannonmoeller/handlbars-layouts",
+  "bugs": "https://github.com/shannonmoeller/handlbars-layouts/issues",
   "license": "MIT",
+  "author": "Shannon Moeller <me@shannonmoeller.com> (http://shannonmoeller.com)",
+  "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/shannonmoeller/handlebars-layouts.git"
-  },
-  "main": "lib/handlebars-layouts.js",
-  "devDependencies": {
-    "brfs": "~0.2",
-    "grunt": "~0.4",
-    "grunt-browserify": "~1.3",
-    "grunt-contrib-clean": "~0.5",
-    "grunt-contrib-jshint": "~0.8",
-    "grunt-contrib-watch": "~0.5",
-    "grunt-simple-mocha": "~0.4",
-    "handlebars": "~2.0",
-    "mocha": "~1.17"
+    "url": "https://github.com/shannonmoeller/handlbars-layouts.git"
   },
   "scripts": {
-    "test": "grunt test"
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "test": "gulp test"
   },
-  "testling": {
-    "harness": "mocha",
-    "scripts": "test/all.js",
-    "browsers": [
-      "chrome/28..latest",
-      "firefox/23..latest",
-      "ie/9..latest",
-      "safari/latest",
-      "opera/latest",
-      "iphone/latest",
-      "ipad/latest",
-      "android-browser/latest"
-    ]
+  "devDependencies": {
+    "coveralls": "^2.6.1",
+    "gulp": "^3.6.0",
+    "gulp-istanbul": "^0.1.1",
+    "gulp-jasmine": "^0.2.0",
+    "gulp-jscs": "^0.4.1",
+    "gulp-jshint": "^1.5.1",
+    "gulp-watch": "^0.5.3",
+    "handlebars": "~2.0",
+    "jshint-stylish": "^0.1.5",
+    "vinyl-source-stream": "^0.1.1",
+    "browserify": "^3.44.1"
+  },
+  "engines": {
+    "node": ">= 0.10"
   }
 }

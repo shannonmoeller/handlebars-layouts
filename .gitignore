@@ -1,2 +1,8 @@
-node_modules
-npm-debug.log
+
+coverage/
+docs/
+node_modules/
+
+*.log
+.*.swp
+

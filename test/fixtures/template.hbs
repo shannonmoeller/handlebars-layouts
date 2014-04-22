@@ -13,6 +13,14 @@
         </ul>
     {{/replace}}
 
+    {{#append "body"}}
+        {{> partial1}}
+
+        {{> partial2}}
+
+        {{> partial3}}
+    {{/append}}
+
     {{#replace "footer"}}
         <small>&copy; 2014</small>
     {{/replace}}

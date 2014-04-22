@@ -4,5 +4,8 @@
         "apple",
         "orange",
         "banana"
-    ]
+    ],
+    "alt1": "description 1",
+    "alt2": "description 2",
+    "alt3": "description 3"
 }
