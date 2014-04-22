@@ -1,6 +1,6 @@
 {
   "name": "handlebars-layouts",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Handlebars helpers which implement Jade-like layout blocks.",
   "keywords": [
     "blocks",
