@@ -5,7 +5,7 @@ var getBlocks = function (context, name) {
     return blocks[name] || (blocks[name] = []);
 };
 
-module.exports = function (handlebars) {
+var layouts = function (handlebars) {
     handlebars.registerHelper({
         extend: function (partial, options) {
             var context = Object.create(this);
@@ -83,3 +83,9 @@ module.exports = function (handlebars) {
 
     return handlebars;
 };
+
+// Assemble
+layouts.register = layouts;
+
+// Legacy
+module.exports = layouts;
