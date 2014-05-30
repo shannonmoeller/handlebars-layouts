@@ -1,0 +1,35 @@
+{{!-- This may be useful in implementations that concatenate a page template 
+      with a programmatically-selected layout template.
+      If you have to do this, it's probably best to prettify the HTML so that
+      you're not left with a bunch of blank lines at the top of the template.
+--}}
+
+{{!-- Template customization --}}
+{{#append "head"}}
+    APPENDED HEAD
+{{/append}}
+
+{{#replace "body"}}
+    REPLACED BODY
+{{/replace}}
+{{#append "body"}}
+    APPENDED BODY
+{{/append}}
+
+{{#prepend "foot"}}
+    PREPENDED FOOT
+{{/prepend}}
+
+{{!-- Template contents --}}
+
+{{#block "head"}}
+    HEAD
+{{/block}}
+
+{{#block "body"}}
+    BODY
+{{/block}}
+
+{{#block "foot"}}
+    FOOT
+{{/block}}

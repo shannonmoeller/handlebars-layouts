@@ -1,0 +1,25 @@
+{{!-- This may be useful in implementations that render a page template then 
+      pass it as an HTML string to a programmatically-selected layout template.
+      End-of-line comments here consume excess whitespace.
+
+      IMPORTANT
+      Do not use this pattern, it exists solely to define how the behavior 
+      works. If you are going to reference the template by partial name, do
+      so with the extend block!
+--}}{{!
+}}{{#append "head"}}
+    APPENDED HEAD
+{{/append}}{{!
+
+}}{{#replace "body"}}
+    REPLACED BODY
+{{/replace}}{{!
+}}{{#append "body"}}
+    APPENDED BODY
+{{/append}}{{!
+
+}}{{#prepend "foot"}}
+    PREPENDED FOOT
+{{/prepend}}{{!
+
+}}{{>layout_simple}}
