@@ -1,6 +1,6 @@
 # `handlebars-layouts`
 
-> Handlebars helpers which implement Jade-like layout blocks.
+> Handlebars helpers which implement layout blocks similar to Jade, Jinja, and Twig.
 
 [![NPM version][npm-img]][npm-url] [![Downloads][downloads-img]][npm-url] [![Build Status][travis-img]][travis-url] [![Coverage Status][coveralls-img]][coveralls-url]
 
