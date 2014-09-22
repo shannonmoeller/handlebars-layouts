@@ -26,17 +26,19 @@
     "test": "gulp test"
   },
   "devDependencies": {
-    "coveralls": "^2.6.1",
-    "gulp": "^3.6.0",
-    "gulp-istanbul": "^0.1.1",
-    "gulp-jasmine": "^0.2.0",
-    "gulp-jscs": "^0.4.1",
-    "gulp-jshint": "^1.5.1",
-    "gulp-watch": "^0.5.3",
+    "browserify": "^5.12.0",
+    "coveralls": "^2.11.1",
+    "event-stream": "^3.1.7",
+    "expect.js": "^0.3.1",
+    "gulp": "^3.8.8",
+    "gulp-istanbul": "^0.3.1",
+    "gulp-jscs": "^1.1.2",
+    "gulp-jshint": "^1.8.4",
+    "gulp-mocha": "^1.1.0",
     "handlebars": "~2.0",
-    "jshint-stylish": "^0.1.5",
-    "vinyl-source-stream": "^0.1.1",
-    "browserify": "^3.44.1"
+    "jshint-stylish": "^1.0.0",
+    "vinyl-fs": "^0.3.7",
+    "vinyl-source-stream": "^1.0.0"
   },
   "engines": {
     "node": ">= 0.10"

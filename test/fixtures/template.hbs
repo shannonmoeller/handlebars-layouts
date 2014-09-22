@@ -1,43 +1,43 @@
 {{#extend "layout"}}
-    {{#append "head"}}
-        <link rel="stylesheet" href="assets/css/home.css" />
-    {{/append}}
+	{{#append "head"}}
+		<link rel="stylesheet" href="assets/css/home.css" />
+	{{/append}}
 
-    {{#replace "body"}}
-        <h2>Welcome Home</h2>
+	{{#replace "body"}}
+		<h2>Welcome Home</h2>
 
-        <ul>
-            {{#items}}
-                <li>{{.}}</li>
-            {{/items}}
-        </ul>
-    {{/replace}}
+		<ul>
+			{{#items}}
+				<li>{{.}}</li>
+			{{/items}}
+		</ul>
+	{{/replace}}
 
-    {{#append "body"}}
-        {{> partial1}}
+	{{#append "body"}}
+		{{> partial1}}
 
-        {{> partial2}}
+		{{> partial2}}
 
-        {{> partial3}}
-    {{/append}}
+		{{> partial3}}
+	{{/append}}
 
-    {{#replace "footer"}}
-        <small>&copy; 2014</small>
-    {{/replace}}
+	{{#replace "footer"}}
+		<small>&copy; 2014</small>
+	{{/replace}}
 
-    {{#append "footer"}}
-        <div>foo</div>
-    {{/append}}
+	{{#append "footer"}}
+		<div>foo</div>
+	{{/append}}
 
-    {{#append "footer"}}
-        <div>bar</div>
-    {{/append}}
+	{{#append "footer"}}
+		<div>bar</div>
+	{{/append}}
 
-    {{#prepend "footer"}}
-        <div>baz</div>
-    {{/prepend}}
+	{{#prepend "footer"}}
+		<div>baz</div>
+	{{/prepend}}
 
-    {{#prepend "foot"}}
-        <script src="assets/js/analytics.js"></script>
-    {{/prepend}}
+	{{#prepend "foot"}}
+		<script src="assets/js/analytics.js"></script>
+	{{/prepend}}
 {{/extend}}
