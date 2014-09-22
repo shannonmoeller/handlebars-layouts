@@ -20,16 +20,6 @@ $ bower install shannonmoeller/handlebars-layouts
 
 ## Helpers
 
-### `#extend`
-
-Loads a layout partial of a given name. May contain `replace`, `append`, and `prepend` block overrides.
-
-```html
-{{#extend "layout"}}
-    ...
-{{/extend}}
-```
-
 ### `#block`
 
 Defines a named block, with optional default content. Blocks may have content appended, prepended, or replaced entirely when extended. You may append and prepend to the same block multiple times.
@@ -48,46 +38,14 @@ Defines a named block, with optional default content. Blocks may have content ap
 {{/block}}
 ```
 
-### `#replace`
+### `#extend`
 
-Replaces the content of a `{{#block}}` with new content.
-
-Layout:
-
-```html
-<html>
-    ...
-    <body>
-        {{#block "header"}}
-            <h1>Hello World</h1>
-        {{/block}}
-        ...
-    </body>
-</html>
-```
-
-Page:
+Loads a layout partial of a given name. May contain `replace`, `append`, and `prepend` block overrides.
 
 ```html
 {{#extend "layout"}}
-
-    {{#replace "header"}}
-        <h2>Goodnight moon.</h2>
-    {{/replace}}
-
-{{/extend}}
-```
-
-Output:
-
-```html
-<html>
     ...
-    <body>
-        <h2>Goodnight moon.</h2>
-        ...
-    </body>
-</html>
+{{/extend}}
 ```
 
 ### `#append`
@@ -114,7 +72,7 @@ Page:
 {{#extend "layout"}}
 
     {{#append "header"}}
-        <h2>Goodnight moon.</h2>
+        <h2>Goodnight Moon</h2>
     {{/append}}
 
 {{/extend}}
@@ -127,7 +85,7 @@ Output:
     ...
     <body>
         <h1>Hello World</h1>
-        <h2>Goodnight moon.</h2>
+        <h2>Goodnight Moon</h2>
         ...
     </body>
 </html>
@@ -157,7 +115,7 @@ Page:
 {{#extend "layout"}}
 
     {{#prepend "header"}}
-        <h2>Goodnight moon.</h2>
+        <h2>Goodnight Moon</h2>
     {{/prepend}}
 
 {{/extend}}
@@ -169,8 +127,50 @@ Output:
 <html>
     ...
     <body>
-        <h2>Goodnight moon.</h2>
+        <h2>Goodnight Moon</h2>
         <h1>Hello World</h1>
+        ...
+    </body>
+</html>
+```
+
+### `#replace`
+
+Replaces the content of a `{{#block}}` with new content.
+
+Layout:
+
+```html
+<html>
+    ...
+    <body>
+        {{#block "header"}}
+            <h1>Hello World</h1>
+        {{/block}}
+        ...
+    </body>
+</html>
+```
+
+Page:
+
+```html
+{{#extend "layout"}}
+
+    {{#replace "header"}}
+        <h2>Goodnight Moon</h2>
+    {{/replace}}
+
+{{/extend}}
+```
+
+Output:
+
+```html
+<html>
+    ...
+    <body>
+        <h2>Goodnight Moon</h2>
         ...
     </body>
 </html>
