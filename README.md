@@ -192,6 +192,17 @@ require('handlebars-layouts')(Handlebars);
 Helpers are also exposed via a `register` method for use with Assemble.
 
 ```js
+require('handlebars-layouts').register(Handlebars);
+
+// or
+
+grunt.initConfig({
+    assemble: {
+        options: {
+            helpers: ['path/to/handlebars-layouts.js']
+        }
+    }
+});
 ```
 
 ## Example
