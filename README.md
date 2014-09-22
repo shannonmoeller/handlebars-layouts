@@ -189,7 +189,7 @@ require('handlebars-layouts')(Handlebars);
 
 ### `.register(Handlebars)`
 
-Helpers are also exposed via a `register` method for use with Assemble.
+Helpers are also exposed via a `register` method for use with [Assemble](http://assemble.io/).
 
 ```js
 require('handlebars-layouts').register(Handlebars);
