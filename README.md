@@ -20,7 +20,7 @@ $ bower install shannonmoeller/handlebars-layouts
 
 ## Helpers
 
-### `extend`
+### `#extend`
 
 Loads a layout partial of a given name. May contain `replace`, `append`, and `prepend` block overrides.
 
@@ -30,7 +30,7 @@ Loads a layout partial of a given name. May contain `replace`, `append`, and `pr
 {{/extend}}
 ```
 
-### `block`
+### `#block`
 
 Defines a named block, with optional default content. Blocks may have content appended, prepended, or replaced entirely when extended. You may append and prepend to the same block multiple times.
 
@@ -48,7 +48,7 @@ Defines a named block, with optional default content. Blocks may have content ap
 {{/block}}
 ```
 
-### `replace`
+### `#replace`
 
 Replaces the content of a `{{#block}}` with new content.
 
@@ -90,7 +90,7 @@ Output:
 </html>
 ```
 
-### `append`
+### `#append`
 
 Adds new content after a `{{#block}}`.
 
@@ -133,7 +133,7 @@ Output:
 </html>
 ```
 
-### `prepend`
+### `#prepend`
 
 Inserts content before a `{{#block}}`.
 
