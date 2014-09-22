@@ -187,7 +187,7 @@ var Handlebars = require('handlebars');
 require('handlebars-layouts')(Handlebars);
 ```
 
-### `register`
+### `.register(Handlebars)`
 
 Helpers are also exposed via a `register` method for use with Assemble.
 
