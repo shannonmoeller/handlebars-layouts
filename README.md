@@ -1,25 +1,198 @@
-# Handlebars Layouts
+# `handlebars-layouts`
 
 > Handlebars helpers which implement Jade-like layout blocks.
 
-[![NPM version](https://badge.fury.io/js/handlebars-layouts.png)](http://badge.fury.io/js/handlebars-layouts)
-[![Build Status](https://travis-ci.org/shannonmoeller/handlebars-layouts.png?branch=master)](https://travis-ci.org/shannonmoeller/handlebars-layouts)
-[![Coverage Status](https://coveralls.io/repos/shannonmoeller/handlebars-layouts/badge.png?branch=master)](https://coveralls.io/r/shannonmoeller/handlebars-layouts?branch=master)
-[![Dependency Status](https://david-dm.org/shannonmoeller/handlebars-layouts.png?theme=shields.io)](https://david-dm.org/shannonmoeller/handlebars-layouts)
+[![NPM version][npm-img]][npm-url] [![Downloads][downloads-img]][npm-url] [![Build Status][travis-img]][travis-url] [![Coverage Status][coveralls-img]][coveralls-url]
 
 ## Install
 
 With [Node.js](http://nodejs.org):
 
-    $ npm install handlebars-layouts
+```sh
+$ npm install handlebars-layouts
+```
 
 With [Bower](http://bower.io):
 
-    $ bower install handlebars-layouts
+```sh
+$ bower install shannonmoeller/handlebars-layouts
+```
 
-With [Component](http://component.io):
+## Helpers
 
-    $ component install shannonmoeller/handlebars-layouts
+### `extend`
+
+Loads a layout partial of a given name. May contain `replace`, `append`, and `prepend` block overrides.
+
+```html
+{{#extend "layout"}}
+    ...
+{{/extend}}
+```
+
+### `block`
+
+Defines a named block, with optional default content. Blocks may have content appended, prepended, or replaced entirely when extended. You may append and prepend to the same block multiple times.
+
+```html
+{{#block "header"}}
+    <h1>Hello World</h1>
+{{/block}}
+
+{{#block "content"}}
+    <p>Lorem ipsum...</p>
+{{/block}}
+
+{{#block "footer"}}
+    <p>&copy; 1970</p>
+{{/block}}
+```
+
+### `replace`
+
+Replaces the content of a `{{#block}}` with new content.
+
+Layout:
+
+```html
+<html>
+    ...
+    <body>
+        {{#block "header"}}
+            <h1>Hello World</h1>
+        {{/block}}
+        ...
+    </body>
+</html>
+```
+
+Page:
+
+```html
+{{#extend "layout"}}
+
+    {{#replace "header"}}
+        <h2>Goodnight moon.</h2>
+    {{/replace}}
+
+{{/extend}}
+```
+
+Output:
+
+```html
+<html>
+    ...
+    <body>
+        <h2>Goodnight moon.</h2>
+        ...
+    </body>
+</html>
+```
+
+### `append`
+
+Adds new content after a `{{#block}}`.
+
+Layout:
+
+```html
+<html>
+    ...
+    <body>
+        {{#block "header"}}
+            <h1>Hello World</h1>
+        {{/block}}
+        ...
+    </body>
+</html>
+```
+
+Page:
+
+```html
+{{#extend "layout"}}
+
+    {{#append "header"}}
+        <h2>Goodnight moon.</h2>
+    {{/append}}
+
+{{/extend}}
+```
+
+Output:
+
+```html
+<html>
+    ...
+    <body>
+        <h1>Hello World</h1>
+        <h2>Goodnight moon.</h2>
+        ...
+    </body>
+</html>
+```
+
+### `prepend`
+
+Inserts content before a `{{#block}}`.
+
+Layout:
+
+```html
+<html>
+    ...
+    <body>
+        {{#block "header"}}
+            <h1>Hello World</h1>
+        {{/block}}
+        ...
+    </body>
+</html>
+```
+
+Page:
+
+```html
+{{#extend "layout"}}
+
+    {{#prepend "header"}}
+        <h2>Goodnight moon.</h2>
+    {{/prepend}}
+
+{{/extend}}
+```
+
+Output:
+
+```html
+<html>
+    ...
+    <body>
+        <h2>Goodnight moon.</h2>
+        <h1>Hello World</h1>
+        ...
+    </body>
+</html>
+```
+
+## Api
+
+Helpers are registered by passing in your instance of Handlebars. This allows
+you to selectively register the helpers on various instances of Handlebars.
+
+```js
+var Handlebars = require('handlebars');
+
+require('handlebars-layouts')(Handlebars);
+```
+
+### `register`
+
+Helpers are also exposed via a `register` method for use with Assemble.
+
+```js
+```
 
 ## Example
 
@@ -154,7 +327,9 @@ console.log(output);
 
 ## Test
 
-    $ npm test
+```sh
+$ npm test
+```
 
 ## License
 
