@@ -334,3 +334,17 @@ $ npm test
 ## License
 
 MIT
+
+[coveralls-img]: http://img.shields.io/coveralls/shannonmoeller/handlebars-layouts/master.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/r/shannonmoeller/handlebars-layouts
+[downloads-img]: http://img.shields.io/npm/dm/handlebars-layouts.svg?style=flat-square
+[gitter-img]:    http://img.shields.io/badge/chat-shannonmoeller/handlebars-layouts-blue.svg?style=flat-square
+[gitter-url]:    https://gitter.im/shannonmoeller/handlebars-layouts
+[gittip-img]:    http://img.shields.io/gittip/shannonmoeller.svg?style=flat-square
+[gittip-url]:    https://www.gittip.com/shannonmoeller
+[npm-img]:       http://img.shields.io/npm/v/handlebars-layouts.svg?style=flat-square
+[npm-url]:       https://npmjs.org/package/handlebars-layouts
+[travis-img]:    http://img.shields.io/travis/shannonmoeller/handlebars-layouts.svg?style=flat-square
+[travis-url]:    https://travis-ci.org/shannonmoeller/handlebars-layouts
+[waffle-img]:    http://img.shields.io/github/issues/shannonmoeller/handlebars-layouts.svg?style=flat-square
+[waffle-url]:    http://waffle.io/shannonmoeller/handlebars-layouts
