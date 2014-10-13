@@ -284,7 +284,7 @@ require('handlebars-layouts')(Handlebars);
 Handlebars.registerPartial('layout', fs.readFileSync('layout.html', 'utf8'));
 
 // Compile template
-var template = Handlebars.compile(fs.readFileSync('template.html', 'uft8'));
+var template = Handlebars.compile(fs.readFileSync('template.html', 'utf8'));
 
 // Render template
 var output = template({
