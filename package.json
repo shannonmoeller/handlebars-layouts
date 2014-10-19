@@ -35,6 +35,7 @@
     "gulp-jscs": "^1.1.2",
     "gulp-jshint": "^1.8.4",
     "gulp-mocha": "^1.1.0",
+    "gulp-prettify": "^0.3.0",
     "handlebars": "~2.0",
     "jshint-stylish": "^1.0.0",
     "vinyl-fs": "^0.3.7",

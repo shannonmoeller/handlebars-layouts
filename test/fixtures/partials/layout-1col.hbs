@@ -1,0 +1,15 @@
+{{#extend "layout"}}
+
+	{{#append "header"}}
+		{{#block "subtitle"}}Gallery{{/block}}
+	{{/append}}
+
+	{{#replace "body"}}
+		<div class="grid">
+			<div class="col full">
+				{{#block "left"}}{{/block}}
+			</div>
+		</div>
+	{{/replace}}
+
+{{/extend}}

@@ -19,10 +19,14 @@ describe('handlebars-layouts', function () {
 
 	function toEqualExpected(file, cb) {
 		var data = require('./fixtures/data.json'),
+			actual = file.path.replace('fixtures', 'actual'),
 			expected = file.path.replace('fixtures', 'expected'),
-			template = handlebars.compile(file.contents.toString());
+			template = handlebars.compile(file.contents.toString()),
+			retval = template(data);
 
-		expect(template(data)).to.be(fs.readFileSync(expected, 'utf8'));
+		fs.writeFileSync(actual, retval, 'utf8');
+
+		expect(retval).to.be(fs.readFileSync(expected, 'utf8'));
 
 		cb(null, file);
 	}
@@ -34,6 +38,7 @@ describe('handlebars-layouts', function () {
 		// Register Partials
 		vs.src(__dirname + '/fixtures/partials/**/*.hbs')
 			.pipe(es.map(toPartial))
+			.on('error', done)
 			.on('end', done);
 	});
 
@@ -55,9 +60,10 @@ describe('handlebars-layouts', function () {
 		expect(template({})).to.be('func');
 	});
 
-	it('should render layouts properly', function (done) {
+	it.only('should render layouts properly', function (done) {
 		vs.src(__dirname + '/fixtures/*.hbs')
 			.pipe(es.map(toEqualExpected))
+			.on('error', done)
 			.on('end', done);
 	});
 });

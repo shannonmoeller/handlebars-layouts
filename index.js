@@ -1,88 +1,107 @@
 'use strict';
 
-function getBlocks(context, name) {
-	var blocks = context._blocks;
-
-	return blocks[name] || (blocks[name] = []);
-}
-
 function layouts(handlebars) {
-	handlebars.registerHelper({
-		extend: function (partial, options) {
-			var context = Object.create(this),
-				template = handlebars.partials[partial];
+	/*jshint validthis:true */
 
-			// Partial template required
-			if (template == null) {
-				throw new Error('Missing layout partial: \'' + partial + '\'');
-			}
+	function getStack(context) {
+		return context._layoutStack || (context._layoutStack = []);
+	}
 
-			// New block context
-			context._blocks = {};
+	function initActions(context) {
+		var stack = getStack(context),
+			actions = [];
 
-			// Parse blocks and discard output
-			options.fn(context);
+		context._layoutActions = actions;
 
-			// Render final layout partial with revised blocks
-			if (typeof template !== 'function') {
-				template = handlebars.compile(template);
-			}
-
-			// Compile, then render
-			return template(context);
-		},
-
-		append: function (name, options) {
-			getBlocks(this, name).push({
-				should: 'append',
-				fn: options.fn
-			});
-		},
-
-		prepend: function (name, options) {
-			getBlocks(this, name).push({
-				should: 'prepend',
-				fn: options.fn
-			});
-		},
-
-		replace: function (name, options) {
-			getBlocks(this, name).push({
-				should: 'replace',
-				fn: options.fn
-			});
-		},
-
-		block: function (name, options) {
-			var block = null,
-				retval = options.fn(this),
-				blocks = getBlocks(this, name),
-				length = blocks.length,
-				i = 0;
-
-			for (; i < length; i++) {
-				block = blocks[i];
-
-				switch (block && block.fn && block.should) {
-					case 'append': {
-						retval = retval + block.fn(this);
-						break;
-					}
-
-					case 'prepend': {
-						retval = block.fn(this) + retval;
-						break;
-					}
-
-					case 'replace': {
-						retval = block.fn(this);
-						break;
-					}
-				}
-			}
-
-			return retval;
+		while (stack.length) {
+			stack.pop()(context);
 		}
+
+		return actions;
+	}
+
+	function getActions(context) {
+		return context._layoutActions || initActions(context);
+	}
+
+	function getActionsByName(context, name) {
+		var actions = getActions(context);
+
+		return actions[name] || (actions[name] = []);
+	}
+
+	function extend(name, options) {
+		var context = Object.create(this),
+			template = handlebars.partials[name];
+
+		// Partial template required
+		if (template == null) {
+			throw new Error('Missing layout partial: \'' + name + '\'');
+		}
+
+		// Compile partial, if needed
+		if (typeof template !== 'function') {
+			template = handlebars.compile(template);
+		}
+
+		// Add overrides to stack
+		getStack(context).push(options.fn);
+
+		// Render partial
+		return template(context);
+	}
+
+	function embed(name, options) {
+		var context = Object.create(this);
+
+		// Reset context
+		context._layoutStack = null;
+		context._layoutActions = null;
+
+		return extend.call(context, name, options);
+	}
+
+	function block(name, options) {
+		var actions = getActionsByName(this, name);
+
+		function run(val, action) {
+			return action(val);
+		}
+
+		return actions.reduce(run, options.fn(this));
+	}
+
+	function append(name, options) {
+		var context = this;
+
+		getActionsByName(this, name).push(function (val) {
+			return val + options.fn(context);
+		});
+	}
+
+	function prepend(name, options) {
+		var context = this;
+
+		getActionsByName(this, name).push(function (val) {
+			return options.fn(context) + val;
+		});
+	}
+
+	function replace(name, options) {
+		var context = this;
+
+		getActionsByName(this, name).push(function (val) {
+			return options.fn(context);
+		});
+	}
+
+	handlebars.registerHelper({
+		extend: extend,
+		embed: embed,
+		block: block,
+		append: append,
+		prepend: prepend,
+		replace: replace
 	});
 
 	return handlebars;

@@ -1,0 +1,25 @@
+{{#extend "layout-2col"}}
+
+	{{#prepend "subtitle"}}Photo {{/prepend}}
+
+	{{#replace "left"}}
+		{{#embed "partial1"}}
+			{{#replace "image"}}
+				<div style="background-image:url('1.png');"></div>
+			{{/replace}}
+		{{/embed}}
+
+		{{#embed "partial2"}}{{/embed}}
+
+		{{#embed "partial3"}}{{/embed}}
+	{{/replace}}
+
+	{{#replace "right"}}
+		<ul>
+			<li>{{ alt1 }}</li>
+			<li>{{ alt2 }}</li>
+			<li>{{ alt3 }}</li>
+		</ul>
+	{{/replace}}
+
+{{/extend}}

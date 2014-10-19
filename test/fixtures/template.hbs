@@ -14,11 +14,9 @@
 	{{/replace}}
 
 	{{#append "body"}}
-		{{> partial1}}
-
-		{{> partial2}}
-
-		{{> partial3}}
+		{{#embed "partial1"}}{{/embed}}
+		{{#embed "partial2"}}{{/embed}}
+		{{#embed "partial3"}}{{/embed}}
 	{{/append}}
 
 	{{#replace "footer"}}

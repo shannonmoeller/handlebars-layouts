@@ -1,0 +1,17 @@
+{{#extend "layout-1col"}}
+
+	{{#replace "header"}}One column{{/replace}}
+
+	{{#replace "left"}}
+		{{#embed "partial1"}}
+			{{#replace "image"}}
+				<div style="background-image:url('1.png');"></div>
+			{{/replace}}
+		{{/embed}}
+
+		{{#embed "partial2"}}{{/embed}}
+
+		{{#embed "partial3"}}{{/embed}}
+	{{/replace}}
+
+{{/extend}}
