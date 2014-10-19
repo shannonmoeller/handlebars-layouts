@@ -51,14 +51,14 @@ function layouts(handlebars) {
 		return template(context);
 	}
 
-	function embed(name, options) {
+	function embed(/* name, options */) {
 		var context = Object.create(this);
 
 		// Reset context
 		context._layoutStack = null;
 		context._layoutActions = null;
 
-		return extend.call(context, name, options);
+		return extend.apply(context, arguments);
 	}
 
 	function block(name, options) {
@@ -72,26 +72,26 @@ function layouts(handlebars) {
 	}
 
 	function append(name, options) {
-		var context = this;
+		var that = this;
 
 		getActionsByName(this, name).push(function (val) {
-			return val + options.fn(context);
+			return val + options.fn(that);
 		});
 	}
 
 	function prepend(name, options) {
-		var context = this;
+		var that = this;
 
 		getActionsByName(this, name).push(function (val) {
-			return options.fn(context) + val;
+			return options.fn(that) + val;
 		});
 	}
 
 	function replace(name, options) {
-		var context = this;
+		var that = this;
 
-		getActionsByName(this, name).push(function (val) {
-			return options.fn(context);
+		getActionsByName(this, name).push(function (/* val */) {
+			return options.fn(that);
 		});
 	}
 

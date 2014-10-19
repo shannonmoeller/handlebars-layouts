@@ -19,12 +19,9 @@ describe('handlebars-layouts', function () {
 
 	function toEqualExpected(file, cb) {
 		var data = require('./fixtures/data.json'),
-			actual = file.path.replace('fixtures', 'actual'),
 			expected = file.path.replace('fixtures', 'expected'),
 			template = handlebars.compile(file.contents.toString()),
 			retval = template(data);
-
-		fs.writeFileSync(actual, retval, 'utf8');
 
 		expect(retval).to.be(fs.readFileSync(expected, 'utf8'));
 
@@ -60,7 +57,7 @@ describe('handlebars-layouts', function () {
 		expect(template({})).to.be('func');
 	});
 
-	it.only('should render layouts properly', function (done) {
+	it('should render layouts properly', function (done) {
 		vs.src(__dirname + '/fixtures/*.hbs')
 			.pipe(es.map(toEqualExpected))
 			.on('error', done)
