@@ -342,6 +342,12 @@ console.log(output);
 $ npm test
 ```
 
+## Support for programmatic layout systems
+
+In some cases the view template may not be able to specify which layout it is to extend. Instead, some template rendering systems allow the layout to be defined programmatically at config or render time. This allows the layout to be swapped as needed with a different but compatible layout without modifying the views.
+
+The Handlebars Layouts helpers allow blocks to be defined in the layout and modified in the view; simply omit the `{{#extend ...}}` wrapper in the view template. Upon rendering the view, a `_blocks` attribute is added to the context corresponding to any blocks the view modified. This attribute must be preserved in the context used to render the layout. Some layout systems handle that already by deriving the layout context from the view context.
+
 ## License
 
 MIT

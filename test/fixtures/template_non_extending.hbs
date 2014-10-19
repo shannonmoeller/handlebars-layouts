@@ -1,0 +1,17 @@
+{{!-- This may be useful in implementations that render a page template then 
+      pass it as an HTML string to a programmatically-selected layout template
+--}}
+{{#append "head"}}
+    APPENDED HEAD
+{{/append}}
+
+{{#replace "body"}}
+    REPLACED BODY
+{{/replace}}
+{{#append "body"}}
+    APPENDED BODY
+{{/append}}
+
+{{#prepend "foot"}}
+    PREPENDED FOOT
+{{/prepend}}

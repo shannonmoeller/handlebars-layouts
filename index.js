@@ -1,6 +1,10 @@
 'use strict';
 
 var getBlocks = function (context, name) {
+    // Allow extension of blocks within the same template
+    if (!context._blocks) {
+        context._blocks = {};
+    }
     var blocks = context._blocks;
     return blocks[name] || (blocks[name] = []);
 };
