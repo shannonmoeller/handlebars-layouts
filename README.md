@@ -78,19 +78,17 @@ Layout:
 <html>
     ...
     <body>
-        ...
         {{#block "header"}}
             <h1>Hello World</h1>
         {{/block}}
-        ...
+
         {{#block "main"}}
             <p>Lorem ipsum.</p>
         {{/block}}
-        ...
+
         {{#block "footer"}}
             <p>&copy; 1999</p>
         {{/block}}
-        ...
     </body>
 </html>
 ```
@@ -122,8 +120,10 @@ Output:
     ...
     <body>
         <h1>Goodnight Moon</h1>
+
         <p>Lorem ipsum.</p>
         <p>Dolor sit amet.</p>
+
         <p>MIT License</p>
         <p>&copy; 1999</p>
     </body>
