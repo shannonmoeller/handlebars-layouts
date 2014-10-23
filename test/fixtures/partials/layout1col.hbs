@@ -1,15 +1,15 @@
 {{#extend "layout"}}
 
-	{{#append "header"}}
+	{{#content "header" mode="append"}}
 		{{#block "subtitle"}}Gallery{{/block}}
-	{{/append}}
+	{{/content}}
 
-	{{#replace "body"}}
+	{{#content "body"}}
 		<div class="grid">
 			<div class="col full">
 				{{#block "left"}}{{/block}}
 			</div>
 		</div>
-	{{/replace}}
+	{{/content}}
 
 {{/extend}}

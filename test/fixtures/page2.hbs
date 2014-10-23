@@ -1,25 +1,29 @@
-{{#extend "layout-2col"}}
+{{#extend "layout2col"}}
 
-	{{#prepend "subtitle"}}Photo {{/prepend}}
+	{{#content "subtitle" mode="prepend"}}Photo {{/content}}
 
-	{{#replace "left"}}
+	{{#content "left"}}
 		{{#embed "partial1"}}
-			{{#replace "image"}}
+			{{#content "image"}}
 				<div style="background-image:url('1.png');"></div>
-			{{/replace}}
+			{{/content}}
 		{{/embed}}
 
 		{{#embed "partial2"}}{{/embed}}
 
 		{{#embed "partial3"}}{{/embed}}
-	{{/replace}}
+	{{/content}}
 
-	{{#replace "right"}}
+	{{#content "right"}}
 		<ul>
 			<li>{{ alt1 }}</li>
 			<li>{{ alt2 }}</li>
 			<li>{{ alt3 }}</li>
 		</ul>
-	{{/replace}}
+	{{/content}}
+
+	{{#content "footer"}}
+		<small>&copy; 1999</small>
+	{{/content}}
 
 {{/extend}}

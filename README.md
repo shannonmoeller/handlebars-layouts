@@ -44,19 +44,20 @@ Loads a layout partial of a given name. May contain `replace`, `append`, and `pr
 
 ```html
 {{#extend "layout"}}
-    ...
+    {{#prepend "title"}}Example - {{/prepend}}
 {{/extend}}
 ```
 
 ### `#embed`
 
-Allows you to render a partial which itself extends from a layout without conflicting. A layout-safe replacement for `{{> partial}}` syntax plus optional overrides.
+Allows you to load a partial which itself extends from a layout. Think of it as a block-safe replacement for the `{{> partial}}` syntax, plus optional overrides. For example, the `{{#replace "block"}}` helpers will not collide with each other:
 
 ```html
 {{#extend "layout"}}
     {{#replace "body"}}
-        {{#embed "confirm"}}
-            {{#replace "title"}}Image 1{{/replace}}
+        {{#embed "gallery"}}{{/embed}}
+        {{#embed "modal"}}
+            {{#prepend "title"}}Image 1 - {{/prepend}}
             {{#replace "body"}}<img src="1.png" alt="" />{{/replace}}
         {{/embed}}
     {{/replace}}

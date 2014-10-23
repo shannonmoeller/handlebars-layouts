@@ -1,24 +1,24 @@
 {{#extend "layout"}}
-	{{#append "header"}}
+	{{#content "header" mode="append"}}
 		<h2>{{#block "subtitle"}}Gallery{{/block}}</h2>
-	{{/append}}
+	{{/content}}
 
-	{{#replace "body"}}
+	{{#content "body"}}
 		<div class="slides">
 			{{#each items}}
 				{{#extend "slide"}}
-					{{#replace "image"}}
+					{{#content "image"}}
 						<img src="slides/{{@index}}.png" alt="" />
-					{{/replace}}
+					{{/content}}
 
-					{{#replace "body3"}}
+					{{#content "body3"}}
 						{{.}}
-					{{/replace}}
+					{{/content}}
 				{{/extend}}
 			{{/each}}
 		</div>
 
 		{{#block "body2"}}
 		{{/block}}
-	{{/replace}}
+	{{/content}}
 {{/extend}}

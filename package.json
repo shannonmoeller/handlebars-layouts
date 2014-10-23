@@ -30,6 +30,7 @@
     "coveralls": "^2.11.1",
     "event-stream": "^3.1.7",
     "expect.js": "^0.3.1",
+    "express": "^4.9.8",
     "gulp": "^3.8.8",
     "gulp-istanbul": "^0.3.1",
     "gulp-jscs": "^1.1.2",
@@ -37,6 +38,8 @@
     "gulp-mocha": "^1.1.0",
     "gulp-prettify": "^0.3.0",
     "handlebars": "~2.0",
+    "hbs": "^2.7.0",
+    "hbs-utils": "0.0.3",
     "jshint-stylish": "^1.0.0",
     "vinyl-fs": "^0.3.7",
     "vinyl-source-stream": "^1.0.0"

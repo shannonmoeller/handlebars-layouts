@@ -33,7 +33,7 @@ describe('handlebars-layouts', function () {
 		handlebarsLayouts(handlebars);
 
 		// Register Partials
-		vs.src(__dirname + '/fixtures/partials/**/*.hbs')
+		vs.src(__dirname + '/fixtures/partials/*.hbs')
 			.pipe(es.map(toPartial))
 			.on('error', done)
 			.on('end', done);

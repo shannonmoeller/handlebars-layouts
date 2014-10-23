@@ -1,9 +1,13 @@
 {{#extend "layout"}}
-	{{#append "head"}}
+	{{#content "head" mode="append"}}
 		<link rel="stylesheet" href="assets/css/home.css" />
-	{{/append}}
+	{{/content}}
 
-	{{#replace "body"}}
+	{{#content "body" mode="bogus"}}
+		<h1 class="bogus">{{title}}</h1>
+	{{/content}}
+
+	{{#content "body"}}
 		<h2>Welcome Home</h2>
 
 		<ul>
@@ -11,31 +15,31 @@
 				<li>{{.}}</li>
 			{{/items}}
 		</ul>
-	{{/replace}}
+	{{/content}}
 
-	{{#append "body"}}
+	{{#content "body" mode="append"}}
 		{{#embed "partial1"}}{{/embed}}
 		{{#embed "partial2"}}{{/embed}}
 		{{#embed "partial3"}}{{/embed}}
-	{{/append}}
+	{{/content}}
 
-	{{#replace "footer"}}
+	{{#content "footer"}}
 		<small>&copy; 2014</small>
-	{{/replace}}
+	{{/content}}
 
-	{{#append "footer"}}
+	{{#content "footer" mode="append"}}
 		<div>foo</div>
-	{{/append}}
+	{{/content}}
 
-	{{#append "footer"}}
+	{{#content "footer" mode="append"}}
 		<div>bar</div>
-	{{/append}}
+	{{/content}}
 
-	{{#prepend "footer"}}
+	{{#content "footer" mode="prepend"}}
 		<div>baz</div>
-	{{/prepend}}
+	{{/content}}
 
-	{{#prepend "foot"}}
+	{{#content "foot" mode="prepend"}}
 		<script src="assets/js/analytics.js"></script>
-	{{/prepend}}
+	{{/content}}
 {{/extend}}

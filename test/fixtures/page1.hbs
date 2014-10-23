@@ -1,17 +1,17 @@
-{{#extend "layout-1col"}}
+{{#extend "layout1col"}}
 
-	{{#replace "header"}}One column{{/replace}}
+	{{#content "header"}}One column{{/content}}
 
-	{{#replace "left"}}
+	{{#content "left"}}
 		{{#embed "partial1"}}
-			{{#replace "image"}}
+			{{#content "image"}}
 				<div style="background-image:url('1.png');"></div>
-			{{/replace}}
+			{{/content}}
 		{{/embed}}
 
 		{{#embed "partial2"}}{{/embed}}
 
 		{{#embed "partial3"}}{{/embed}}
-	{{/replace}}
+	{{/content}}
 
 {{/extend}}
