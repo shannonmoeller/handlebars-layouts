@@ -2,7 +2,7 @@
 
 Breaking changes:
 
-- Consolidated `append`, `prepend`, and `replace` helpers with a single `content` helper that accepts a `mode` attribute. (Thank you [Assemble](https://github.com/assemble/handlebars-helpers/blob/master/lib/helpers/helpers-layouts.js#L86) contributors).
+- Consolidated `append`, `prepend`, and `replace` helpers into a single `content` helper that accepts a `mode` attribute. (Thank you [Assemble](https://github.com/assemble/handlebars-helpers/blob/master/lib/helpers/helpers-layouts.js#L86) contributors).
 
 Features:
 

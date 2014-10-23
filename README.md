@@ -28,7 +28,7 @@ Loads a layout partial of a given name and defines block content.
 
 ### `#embed`
 
-Allows you to load a partial which itself extends from a layout and define block content. Blocks defined in the embedded partials will not conflict with those in the primary layout.
+Allows you to load a partial which itself extends from a layout. Blocks defined in embedded partials will not conflict with those in the primary layout.
 
 ```html
 {{#extend "layout"}}
@@ -52,7 +52,7 @@ Allows you to load a partial which itself extends from a layout and define block
 
 ### `#block`
 
-Defines a named block, with optional default content. Blocks may have content appended, prepended, or replaced entirely when extended. You may append and prepend to the same block multiple times.
+Defines a named block, with optional default content. Blocks may have content appended, prepended, or replaced entirely when extending or embedding. You may append and prepend to the same block multiple times.
 
 ```html
 {{#block "header"}}
@@ -70,7 +70,7 @@ Defines a named block, with optional default content. Blocks may have content ap
 
 ### `#content`
 
-Sets `{{#block}}` content, optionally appending or prepending using the `mode` attribute.
+Sets block content, optionally appending or prepending using the `mode` attribute.
 
 Layout:
 
@@ -311,7 +311,7 @@ MIT
 [coveralls-img]: http://img.shields.io/coveralls/shannonmoeller/handlebars-layouts/master.svg?style=flat-square
 [coveralls-url]: https://coveralls.io/r/shannonmoeller/handlebars-layouts
 [downloads-img]: http://img.shields.io/npm/dm/handlebars-layouts.svg?style=flat-square
-[gitter-img]:    http://img.shields.io/badge/chat-shannonmoeller/handlebars-layouts-blue.svg?style=flat-square
+[gitter-img]:    http://img.shields.io/badge/chat-shannonmoeller--handlebars-layouts-blue.svg?style=flat-square
 [gitter-url]:    https://gitter.im/shannonmoeller/handlebars-layouts
 [gittip-img]:    http://img.shields.io/gittip/shannonmoeller.svg?style=flat-square
 [gittip-url]:    https://www.gittip.com/shannonmoeller
