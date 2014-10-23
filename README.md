@@ -8,17 +8,47 @@
 
 With [Node.js](http://nodejs.org):
 
-```sh
-$ npm install handlebars-layouts
-```
+    $ npm install handlebars-layouts
 
 With [Bower](http://bower.io):
 
-```sh
-$ bower install shannonmoeller/handlebars-layouts
-```
+    $ bower install shannonmoeller/handlebars-layouts
 
 ## Helpers
+
+### `#extend`
+
+Loads a layout partial of a given name and defines block content.
+
+```html
+{{#extend "layout"}}
+    {{#content "title" mode="prepend"}}Example - {{/content}}
+{{/extend}}
+```
+
+### `#embed`
+
+Allows you to load a partial which itself extends from a layout and define block content. Blocks defined in the embedded partials will not conflict with those in the primary layout.
+
+```html
+{{#extend "layout"}}
+
+    {{#content "body"}}
+        {{#embed "gallery"}}
+            {{#content "body"}}
+                <img src="1.png" alt="" />
+                <img src="2.png" alt="" />
+            {{/content}}
+        {{/embed}}
+
+        {{#embed "modal"}}
+            {{#content "title" mode="prepend"}}Image 1 - {{/content}}
+            {{#content "body"}}<img src="1.png" alt="" />{{/content}}
+        {{/embed}}
+    {{/content}}
+
+{{/extend}}
+```
 
 ### `#block`
 
@@ -29,7 +59,7 @@ Defines a named block, with optional default content. Blocks may have content ap
     <h1>Hello World</h1>
 {{/block}}
 
-{{#block "content"}}
+{{#block "main"}}
     <p>Lorem ipsum...</p>
 {{/block}}
 
@@ -38,35 +68,9 @@ Defines a named block, with optional default content. Blocks may have content ap
 {{/block}}
 ```
 
-### `#extend`
+### `#content`
 
-Loads a layout partial of a given name. May contain `replace`, `append`, and `prepend` block overrides.
-
-```html
-{{#extend "layout"}}
-    {{#prepend "title"}}Example - {{/prepend}}
-{{/extend}}
-```
-
-### `#embed`
-
-Allows you to load a partial which itself extends from a layout. Think of it as a block-safe replacement for the `{{> partial}}` syntax, plus optional overrides. For example, the `{{#replace "block"}}` helpers will not collide with each other:
-
-```html
-{{#extend "layout"}}
-    {{#replace "body"}}
-        {{#embed "gallery"}}{{/embed}}
-        {{#embed "modal"}}
-            {{#prepend "title"}}Image 1 - {{/prepend}}
-            {{#replace "body"}}<img src="1.png" alt="" />{{/replace}}
-        {{/embed}}
-    {{/replace}}
-{{/extend}}
-```
-
-### `#append`
-
-Adds new content after a `{{#block}}`.
+Sets `{{#block}}` content, optionally appending or prepending using the `mode` attribute.
 
 Layout:
 
@@ -74,8 +78,17 @@ Layout:
 <html>
     ...
     <body>
+        ...
         {{#block "header"}}
             <h1>Hello World</h1>
+        {{/block}}
+        ...
+        {{#block "main"}}
+            <p>Lorem ipsum.</p>
+        {{/block}}
+        ...
+        {{#block "footer"}}
+            <p>&copy; 1999</p>
         {{/block}}
         ...
     </body>
@@ -87,9 +100,17 @@ Page:
 ```html
 {{#extend "layout"}}
 
-    {{#append "header"}}
-        <h2>Goodnight Moon</h2>
-    {{/append}}
+    {{#content "header"}}
+        <h1>Goodnight Moon</h1>
+    {{/content}}
+
+    {{#content "main" mode="append"}}
+        <p>Dolor sit amet.</p>
+    {{/content}}
+
+    {{#content "footer" mode="prepend"}}
+        <p>MIT License</p>
+    {{/content}}
 
 {{/extend}}
 ```
@@ -100,94 +121,11 @@ Output:
 <html>
     ...
     <body>
-        <h1>Hello World</h1>
-        <h2>Goodnight Moon</h2>
-        ...
-    </body>
-</html>
-```
-
-### `#prepend`
-
-Inserts content before a `{{#block}}`.
-
-Layout:
-
-```html
-<html>
-    ...
-    <body>
-        {{#block "header"}}
-            <h1>Hello World</h1>
-        {{/block}}
-        ...
-    </body>
-</html>
-```
-
-Page:
-
-```html
-{{#extend "layout"}}
-
-    {{#prepend "header"}}
-        <h2>Goodnight Moon</h2>
-    {{/prepend}}
-
-{{/extend}}
-```
-
-Output:
-
-```html
-<html>
-    ...
-    <body>
-        <h2>Goodnight Moon</h2>
-        <h1>Hello World</h1>
-        ...
-    </body>
-</html>
-```
-
-### `#replace`
-
-Replaces the content of a `{{#block}}` with new content.
-
-Layout:
-
-```html
-<html>
-    ...
-    <body>
-        {{#block "header"}}
-            <h1>Hello World</h1>
-        {{/block}}
-        ...
-    </body>
-</html>
-```
-
-Page:
-
-```html
-{{#extend "layout"}}
-
-    {{#replace "header"}}
-        <h2>Goodnight Moon</h2>
-    {{/replace}}
-
-{{/extend}}
-```
-
-Output:
-
-```html
-<html>
-    ...
-    <body>
-        <h2>Goodnight Moon</h2>
-        ...
+        <h1>Goodnight Moon</h1>
+        <p>Lorem ipsum.</p>
+        <p>Dolor sit amet.</p>
+        <p>MIT License</p>
+        <p>&copy; 1999</p>
     </body>
 </html>
 ```
@@ -198,17 +136,19 @@ Helpers are registered by passing in your instance of Handlebars. This allows
 you to selectively register the helpers on various instances of Handlebars.
 
 ```js
-var Handlebars = require('handlebars');
+var handlebars = require('handlebars');
 
-require('handlebars-layouts')(Handlebars);
+require('handlebars-layouts')(handlebars);
 ```
 
-### `.register(Handlebars)`
+### `.register(handlebars)`
 
 Helpers are also exposed via a `register` method for use with [Assemble](http://assemble.io/).
 
 ```js
-require('handlebars-layouts').register(Handlebars);
+var handlebars = require('handlebars');
+
+require('handlebars-layouts').register(handlebars);
 
 // or
 
@@ -267,11 +207,11 @@ grunt.initConfig({
 
 ```html
 {{#extend "layout"}}
-    {{#append "head"}}
+    {{#content "head" mode="append"}}
         <link rel="stylesheet" href="assets/css/home.css" />
-    {{/append}}
+    {{/content}}
 
-    {{#replace "body"}}
+    {{#content "body"}}
         <h2>Welcome Home</h2>
 
         <ul>
@@ -279,11 +219,11 @@ grunt.initConfig({
                 <li>{{.}}</li>
             {{/items}}
         </ul>
-    {{/replace}}
+    {{/content}}
 
-    {{#prepend "foot"}}
+    {{#content "foot" mode="prepend"}}
         <script src="assets/js/analytics.js"></script>
-    {{/prepend}}
+    {{/content}}
 {{/extend}}
 ```
 
@@ -357,6 +297,12 @@ console.log(output);
 ```sh
 $ npm test
 ```
+
+## Contribute
+
+[![Tasks][waffle-img]][waffle-url] [![Chat][gitter-img]][gitter-url] [![Tip][gittip-img]][gittip-url]
+
+Standards for this project, including tests, code coverage, and semantics are enforced with a build tool. Pull requests must include passing tests with 100% code coverage and no linting errors.
 
 ## License
 
