@@ -1,7 +1,7 @@
 {
   "name": "handlebars-layouts",
-  "version": "0.3.3",
-  "description": "Handlebars helpers which implement Jade-like layout blocks.",
+  "version": "1.0.0",
+  "description": "Handlebars helpers which implement layout blocks similar to Jade, Jinja, Swig, and Twig.",
   "main": "dist/handlebars-layouts.js",
   "ignore": ["/*", "/*/", "!/dist/handlebars-layouts.js"]
 }
