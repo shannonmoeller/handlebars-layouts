@@ -6,7 +6,7 @@ var gulp = require('gulp'),
 		dest: './dist',
 		gulp: './gulpfile.js',
 		src: './index.js',
-		test: './test/**/*.spec.js'
+		test: './test/*.spec.js'
 	};
 
 gulp.task('default', ['build']);
@@ -42,9 +42,10 @@ gulp.task('test', ['cover'], function () {
 
 gulp.task('build', ['lint', 'test'], function () {
 	var browserify = require('browserify'),
-		source = require('vinyl-source-stream');
+		source = require('vinyl-source-stream'),
+		options = { standalone: 'handlebars-layouts' };
 
-	return browserify(paths.src)
+	return browserify(paths.src, options)
 		.bundle()
 		.pipe(source(pkg.name + '.js'))
 		.pipe(gulp.dest(paths.dest));

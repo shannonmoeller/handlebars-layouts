@@ -10,6 +10,10 @@ Features:
 - Added an `embed` helper to insert a partial that extends from its own layout.
 - Added test server for use with Express.
 
+Bugfixes:
+
+- Browserify build was not properly wrapping module with UMD due to missing `standalone` option. Fixes AMD issues.
+
 ## 0.3.3
 
 Bugfixes:
