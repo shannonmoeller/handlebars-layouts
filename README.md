@@ -144,20 +144,28 @@ Output:
 Helpers are registered by passing in your instance of Handlebars. This allows
 you to selectively register the helpers on various instances of Handlebars.
 
-```js
-var handlebars = require('handlebars');
+### `layouts(handlebars)`
 
-require('handlebars-layouts')(handlebars);
+- `handlebars` `Handlebars` - An instance of Handlebars.
+
+```js
+var handlebars = require('handlebars'),
+    layouts = require('handlebars-layouts');
+
+layouts(handlebars);
 ```
 
-### `.register(handlebars)`
+### `layouts.register(handlebars)`
+
+- `handlebars` `Handlebars` - An instance of Handlebars.
 
 Helpers are also exposed via a `register` method for use with [Assemble](http://assemble.io/).
 
 ```js
-var handlebars = require('handlebars');
+var handlebars = require('handlebars'),
+    layouts = require('handlebars-layouts');
 
-require('handlebars-layouts').register(handlebars);
+layouts.register(handlebars);
 
 // or
 
