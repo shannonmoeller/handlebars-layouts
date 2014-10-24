@@ -1,66 +1,148 @@
 'use strict';
 
 var handlebarsLayouts = require('../index'),
-	es = require('event-stream'),
-	expect = require('expect.js'),
-	fs = require('fs'),
-	handlebars = require('handlebars'),
-	path = require('path'),
-	vs = require('vinyl-fs');
+	expect = require('expect.js');
 
-describe('handlebars-layouts', function () {
-	function toPartial(file, cb) {
-		var name = path.basename(file.path).replace(/\.[^.]+$/, '');
+describe('handlebars-layouts spec', function () {
+	it('should register helpers', function () {
+		var count = 0,
+			mock = {
+				registerHelper: function (helpers) {
+					count++;
 
-		handlebars.registerPartial(name, file.contents.toString());
+					expect(helpers.extend).to.be.a(Function);
+					expect(helpers.embed).to.be.a(Function);
+					expect(helpers.block).to.be.a(Function);
+					expect(helpers.content).to.be.a(Function);
+				}
+			};
 
-		cb(null, file);
-	}
+		handlebarsLayouts(mock);
 
-	function toEqualExpected(file, cb) {
-		var data = require('./fixtures/data.json'),
-			expected = file.path.replace('fixtures', 'expected'),
-			template = handlebars.compile(file.contents.toString()),
-			retval = template(data);
-
-		expect(retval).to.be(fs.readFileSync(expected, 'utf8'));
-
-		cb(null, file);
-	}
-
-	before(function (done) {
-		// Register Helpers
-		handlebarsLayouts(handlebars);
-
-		// Register Partials
-		vs.src(__dirname + '/fixtures/partials/*.hbs')
-			.pipe(es.map(toPartial))
-			.on('error', done)
-			.on('end', done);
+		expect(count).to.be(1);
 	});
 
-	it('should throw an error if partial is not registered', function () {
-		function undef() {
-			var template = handlebars.compile('{{#extend "undef"}}{{/extend}}');
+	describe('register', function () {
+		it('should register helpers', function () {
+			var count = 0,
+				mock = {
+					registerHelper: function (helpers) {
+						count++;
 
-			template({});
-		}
+						expect(helpers.extend).to.be.a(Function);
+						expect(helpers.embed).to.be.a(Function);
+						expect(helpers.block).to.be.a(Function);
+						expect(helpers.content).to.be.a(Function);
+					}
+				};
 
-		expect(undef).to.throwError();
+			handlebarsLayouts.register(mock);
+
+			expect(count).to.be(1);
+		});
 	});
 
-	it('should not compile if partial is already a function', function () {
-		var template = handlebars.compile('{{#extend "func"}}{{/extend}}');
+	describe('#extend', function () {
+		it('should use fallback values as needed', function () {
+			var helpers,
+				count = 0,
+				mock = {
+					partials: {
+						foo: function (data) {
+							count++;
+							return (data && data.foo) || '';
+						}
+					},
+					registerHelper: function (h) {
+						count++;
+						helpers = h;
+					}
+				};
 
-		handlebars.registerPartial('func', handlebars.compile('func'));
+			handlebarsLayouts(mock);
 
-		expect(template({})).to.be('func');
+			expect(helpers.extend.call(null, 'foo')).to.be('');
+			expect(helpers.extend.call({ foo: 'bar' }, 'foo')).to.be('bar');
+
+			expect(count).to.be(3);
+		});
 	});
 
-	it('should render layouts properly', function (done) {
-		vs.src(__dirname + '/fixtures/*.hbs')
-			.pipe(es.map(toEqualExpected))
-			.on('error', done)
-			.on('end', done);
+	describe('#embed', function () {
+		it('should use fallback values as needed', function () {
+			var helpers,
+				count = 0,
+				mock = {
+					partials: {
+						foo: function (data) {
+							count++;
+							return (data && data.foo) || '';
+						}
+					},
+					registerHelper: function (h) {
+						count++;
+						helpers = h;
+					}
+				};
+
+			handlebarsLayouts(mock);
+
+			expect(helpers.embed.call(null, 'foo')).to.be('');
+			expect(helpers.embed.call({ foo: 'bar' }, 'foo')).to.be('bar');
+
+			expect(count).to.be(3);
+		});
+	});
+
+	describe('#block', function () {
+		it('should use fallback values as needed', function () {
+			var helpers,
+				count = 0,
+				mock = {
+					partials: {
+						foo: function (data) {
+							count++;
+							return (data && data.foo) || '';
+						}
+					},
+					registerHelper: function (h) {
+						count++;
+						helpers = h;
+					}
+				};
+
+			handlebarsLayouts(mock);
+
+			expect(helpers.block.call(null, 'foo')).to.be('');
+			expect(helpers.block.call({ foo: 'bar' }, 'foo')).to.be('');
+
+			expect(count).to.be(1);
+		});
+	});
+
+	describe('#content', function () {
+		it('should use fallback values as needed', function () {
+			var helpers,
+				count = 0,
+				mock = {
+					partials: {
+						foo: function (data) {
+							count++;
+							return (data && data.foo) || '';
+						}
+					},
+					registerHelper: function (h) {
+						count++;
+						helpers = h;
+					}
+				};
+
+			handlebarsLayouts(mock);
+
+			expect(helpers.content.call(null, 'foo')).to.be('');
+			expect(helpers.content.call({ foo: 'bar' }, 'foo')).to.be('');
+
+			expect(count).to.be(1);
+		});
 	});
 });

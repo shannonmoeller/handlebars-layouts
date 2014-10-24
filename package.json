@@ -7,10 +7,13 @@
     "dust",
     "express",
     "handlebars",
+    "hbs",
     "jade",
     "layout",
     "mote",
-    "mustache"
+    "mustache",
+    "swig",
+    "twig"
   ],
   "homepage": "https://github.com/shannonmoeller/handlebars-layouts",
   "bugs": "https://github.com/shannonmoeller/handlebars-layouts/issues",

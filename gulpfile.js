@@ -6,7 +6,7 @@ var gulp = require('gulp'),
 		dest: './dist',
 		gulp: './gulpfile.js',
 		src: './index.js',
-		test: './test/*.spec.js'
+		test: './test/*.{e2e,spec}.js'
 	};
 
 gulp.task('default', ['build']);

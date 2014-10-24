@@ -11,7 +11,7 @@ function getStack(context) {
 
 function initActions(context) {
 	var stack = getStack(context),
-		actions = [];
+		actions = {};
 
 	context._layoutActions = actions;
 
@@ -54,10 +54,27 @@ function applyAction(val, action) {
 	}
 }
 
+/**
+ * Registers layout helpers on an instance of Handlebars.
+ *
+ * @type {Function}
+ * @param {Object} handlebars Handlebars instance.
+ * @return {Object} Handlebars instance.
+ */
 function layouts(handlebars) {
 	var helpers = {
+		/**
+		 * @method extend
+		 * @param {String} name
+		 * @param {Object} options
+		 * @param {Function(Object)} options.fn
+		 * @return {String} Rendered partial.
+		 */
 		extend: function (name, options) {
-			var context = Object.create(this || null),
+			options = options || {};
+
+			var fn = options.fn || noop,
+				context = Object.create(this || {}),
 				template = handlebars.partials[name];
 
 			// Partial template required
@@ -71,16 +88,18 @@ function layouts(handlebars) {
 			}
 
 			// Add overrides to stack
-			if (typeof options.fn === 'function') {
-				getStack(context).push(options.fn);
-			}
+			getStack(context).push(fn);
 
 			// Render partial
 			return template(context);
 		},
 
-		embed: function (/* name, options */) {
-			var context = Object.create(this || null);
+		/**
+		 * @method embed
+		 * @return {String} Rendered partial.
+		 */
+		embed: function () {
+			var context = Object.create(this || {});
 
 			// Reset context
 			context._layoutStack = null;
@@ -90,21 +109,43 @@ function layouts(handlebars) {
 			return helpers.extend.apply(context, arguments);
 		},
 
+		/**
+		 * @method block
+		 * @param {String} name
+		 * @param {Object} options
+		 * @param {Function(Object)} options.fn
+		 * @return {String} Block content.
+		 */
 		block: function (name, options) {
-			return getActionsByName(this, name).reduce(
-				applyAction.bind(this),
-				options.fn(this)
+			options = options || {};
+
+			var fn = options.fn || noop,
+				context = this || {};
+
+			return getActionsByName(context, name).reduce(
+				applyAction.bind(context),
+				fn(context)
 			);
 		},
 
+		/**
+		 * @method content
+		 * @param {String} name
+		 * @param {Object} options
+		 * @param {Function(Object)} options.fn
+		 * @param {Object} options.hash
+		 * @param {String} options.hash.mode
+		 * @return {String} Always empty.
+		 */
 		content: function (name, options) {
 			options = options || {};
 
 			var fn = options.fn || noop,
 				hash = options.hash || {},
-				mode = hash.mode || 'replace';
+				mode = hash.mode || 'replace',
+				context = this || {};
 
-			getActionsByName(this, name).push({
+			getActionsByName(context, name).push({
 				mode: mode.toLowerCase(),
 				fn: fn
 			});
@@ -118,7 +159,14 @@ function layouts(handlebars) {
 	return handlebars;
 }
 
-// Assemble
+/**
+ * Assemble-compatible register method.
+ *
+ * @method register
+ * @param {Object} handlebars Handlebars instance.
+ * @return {Object} Handlebars instance.
+ * @static
+ */
 layouts.register = layouts;
 
 // Legacy

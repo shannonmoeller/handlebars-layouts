@@ -16,7 +16,9 @@ With [Bower](http://bower.io):
 
 ## Helpers
 
-### `#extend`
+### `{{#extend [partial]}}`
+
+- `partial` `String` - Name of partial to render.
 
 Loads a layout partial of a given name and defines block content.
 
@@ -26,7 +28,9 @@ Loads a layout partial of a given name and defines block content.
 {{/extend}}
 ```
 
-### `#embed`
+### `{{#embed [partial]}}`
+
+- `partial` `String` - Name of partial to render.
 
 Allows you to load a partial which itself extends from a layout. Blocks defined in embedded partials will not conflict with those in the primary layout.
 
@@ -50,7 +54,9 @@ Allows you to load a partial which itself extends from a layout. Blocks defined 
 {{/extend}}
 ```
 
-### `#block`
+### `{{#block [name]}}`
+
+- `name` `String` - Block identifier.
 
 Defines a named block, with optional default content. Blocks may have content appended, prepended, or replaced entirely when extending or embedding. You may append and prepend to the same block multiple times.
 
@@ -68,7 +74,10 @@ Defines a named block, with optional default content. Blocks may have content ap
 {{/block}}
 ```
 
-### `#content`
+### `{{#content [name] mode="(append|prepend|replace)"}}`
+
+- `name` `String` - Identifier of the block to modify.
+- `mode` `String` _(Optional)_ - Means of providing block content. Default: `replace`.
 
 Sets block content, optionally appending or prepending using the `mode` attribute.
 
