@@ -1,10 +1,10 @@
 'use strict';
 
 var handlebarsLayouts = require('../index'),
-	es = require('event-stream'),
 	expect = require('expect.js'),
 	fs = require('fs'),
 	handlebars = require('handlebars'),
+	map = require('map-stream'),
 	path = require('path'),
 	vs = require('vinyl-fs');
 
@@ -34,7 +34,7 @@ describe('handlebars-layouts e2e', function () {
 
 		// Register Partials
 		vs.src(__dirname + '/fixtures/partials/*.hbs')
-			.pipe(es.map(toPartial))
+			.pipe(map(toPartial))
 			.on('error', done)
 			.on('end', done);
 	});
@@ -59,7 +59,7 @@ describe('handlebars-layouts e2e', function () {
 
 	it('should render layouts properly', function (done) {
 		vs.src(__dirname + '/fixtures/*.hbs')
-			.pipe(es.map(toEqualExpected))
+			.pipe(map(toEqualExpected))
 			.on('error', done)
 			.on('end', done);
 	});

@@ -4,39 +4,42 @@ var handlebarsLayouts = require('../index'),
 	expect = require('expect.js');
 
 describe('handlebars-layouts spec', function () {
-	it('should register helpers', function () {
-		var count = 0,
-			mock = {
-				registerHelper: function (helpers) {
+	var count,
+		hbs,
+		helpers;
+
+	beforeEach(function () {
+		count = 0;
+		hbs = {
+			partials: {
+				foo: function (data) {
 					count++;
 
-					expect(helpers.extend).to.be.a(Function);
-					expect(helpers.embed).to.be.a(Function);
-					expect(helpers.block).to.be.a(Function);
-					expect(helpers.content).to.be.a(Function);
+					return (data && data.foo) || '';
 				}
-			};
+			},
+			registerHelper: function (h) {
+				count++;
 
-		handlebarsLayouts(mock);
+				expect(h.extend).to.be.a(Function);
+				expect(h.embed).to.be.a(Function);
+				expect(h.block).to.be.a(Function);
+				expect(h.content).to.be.a(Function);
+
+				helpers = h;
+			}
+		};
+	});
+
+	it('should register helpers', function () {
+		handlebarsLayouts(hbs);
 
 		expect(count).to.be(1);
 	});
 
 	describe('register', function () {
 		it('should register helpers', function () {
-			var count = 0,
-				mock = {
-					registerHelper: function (helpers) {
-						count++;
-
-						expect(helpers.extend).to.be.a(Function);
-						expect(helpers.embed).to.be.a(Function);
-						expect(helpers.block).to.be.a(Function);
-						expect(helpers.content).to.be.a(Function);
-					}
-				};
-
-			handlebarsLayouts.register(mock);
+			handlebarsLayouts.register(hbs);
 
 			expect(count).to.be(1);
 		});
@@ -44,22 +47,7 @@ describe('handlebars-layouts spec', function () {
 
 	describe('#extend', function () {
 		it('should use fallback values as needed', function () {
-			var helpers,
-				count = 0,
-				mock = {
-					partials: {
-						foo: function (data) {
-							count++;
-							return (data && data.foo) || '';
-						}
-					},
-					registerHelper: function (h) {
-						count++;
-						helpers = h;
-					}
-				};
-
-			handlebarsLayouts(mock);
+			handlebarsLayouts(hbs);
 
 			expect(helpers.extend.call(null, 'foo')).to.be('');
 			expect(helpers.extend.call({ foo: 'bar' }, 'foo')).to.be('bar');
@@ -70,22 +58,7 @@ describe('handlebars-layouts spec', function () {
 
 	describe('#embed', function () {
 		it('should use fallback values as needed', function () {
-			var helpers,
-				count = 0,
-				mock = {
-					partials: {
-						foo: function (data) {
-							count++;
-							return (data && data.foo) || '';
-						}
-					},
-					registerHelper: function (h) {
-						count++;
-						helpers = h;
-					}
-				};
-
-			handlebarsLayouts(mock);
+			handlebarsLayouts(hbs);
 
 			expect(helpers.embed.call(null, 'foo')).to.be('');
 			expect(helpers.embed.call({ foo: 'bar' }, 'foo')).to.be('bar');
@@ -96,22 +69,7 @@ describe('handlebars-layouts spec', function () {
 
 	describe('#block', function () {
 		it('should use fallback values as needed', function () {
-			var helpers,
-				count = 0,
-				mock = {
-					partials: {
-						foo: function (data) {
-							count++;
-							return (data && data.foo) || '';
-						}
-					},
-					registerHelper: function (h) {
-						count++;
-						helpers = h;
-					}
-				};
-
-			handlebarsLayouts(mock);
+			handlebarsLayouts(hbs);
 
 			expect(helpers.block.call(null, 'foo')).to.be('');
 			expect(helpers.block.call({ foo: 'bar' }, 'foo')).to.be('');
@@ -122,22 +80,7 @@ describe('handlebars-layouts spec', function () {
 
 	describe('#content', function () {
 		it('should use fallback values as needed', function () {
-			var helpers,
-				count = 0,
-				mock = {
-					partials: {
-						foo: function (data) {
-							count++;
-							return (data && data.foo) || '';
-						}
-					},
-					registerHelper: function (h) {
-						count++;
-						helpers = h;
-					}
-				};
-
-			handlebarsLayouts(mock);
+			handlebarsLayouts(hbs);
 
 			expect(helpers.content.call(null, 'foo')).to.be('');
 			expect(helpers.content.call({ foo: 'bar' }, 'foo')).to.be('');
