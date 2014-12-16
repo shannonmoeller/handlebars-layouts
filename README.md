@@ -1,8 +1,8 @@
 # `handlebars-layouts`
 
-> Handlebars helpers which implement layout blocks similar to Jade, Jinja, Swig, and Twig.
-
 [![NPM version][npm-img]][npm-url] [![Downloads][downloads-img]][npm-url] [![Build Status][travis-img]][travis-url] [![Coverage Status][coveralls-img]][coveralls-url]
+
+Handlebars helpers which implement layout blocks similar to Jade, Jinja, Swig, and Twig.
 
 ## Install
 
