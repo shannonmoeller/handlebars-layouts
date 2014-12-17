@@ -4,12 +4,11 @@ var handlebarsLayouts = require('../index'),
 	expect = require('expect.js');
 
 describe('handlebars-layouts spec', function () {
-	var count,
-		hbs,
-		helpers;
+	var count, hbs, helpers;
 
 	beforeEach(function () {
 		count = 0;
+
 		hbs = {
 			partials: {
 				foo: function (data) {

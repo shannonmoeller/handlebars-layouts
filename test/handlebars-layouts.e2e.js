@@ -18,7 +18,7 @@ describe('handlebars-layouts e2e', function () {
 	}
 
 	function toEqualExpected(file, cb) {
-		var data = require('./fixtures/data.json'),
+		var data = require('./fixtures/data/users.json'),
 			expected = file.path.replace('fixtures', 'expected'),
 			template = handlebars.compile(file.contents.toString()),
 			retval = template(data);
@@ -58,7 +58,7 @@ describe('handlebars-layouts e2e', function () {
 	});
 
 	it('should render layouts properly', function (done) {
-		vs.src(__dirname + '/fixtures/*.hbs')
+		vs.src(__dirname + '/fixtures/*.html')
 			.pipe(map(toEqualExpected))
 			.on('error', done)
 			.on('end', done);

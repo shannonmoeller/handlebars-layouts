@@ -1,17 +1,21 @@
 {{#extend "layout"}}
 
 	{{#content "header" mode="append"}}
-		{{#block "subtitle"}}Gallery{{/block}}
+		{{#block "subtitle"}}{{/block}}
 	{{/content}}
 
 	{{#content "body"}}
 		<div class="grid">
 			<div class="col 2of3">
-				{{#block "left"}}{{/block}}
+				{{#block "left"}}
+					<p>Lorem ipsum.</p>
+				{{/block}}
 			</div>
 
 			<div class="col 1of3">
-				{{#block "right"}}{{/block}}
+				{{#block "right"}}
+					<p>Dolor sit amet.</p>
+				{{/block}}
 			</div>
 		</div>
 	{{/content}}

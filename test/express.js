@@ -4,7 +4,7 @@ var handlebarsLayouts = require('../index'),
 	express = require('express'),
 	hbs = require('hbs'),
 	utils = require('hbs-utils')(hbs),
-	data = require('./fixtures/data.json'),
+	data = require('./fixtures/data/users.json'),
 	views = process.cwd() + '/fixtures',
 	partials = views + '/partials';
 
@@ -21,15 +21,11 @@ express()
 	.set('views', views)
 
 	// Routes
-	.get('/template', function (req, res) {
-		res.render('template', data);
-	})
-	.get('/page1', function (req, res) {
-		res.render('page1', data);
-	})
-	.get('/page2', function (req, res) {
-		res.render('page2', data);
-	})
+	.get('/append',  function (req, res) { res.render('append',  data); })
+	.get('/embed',   function (req, res) { res.render('embed',   data); })
+	.get('/extend',  function (req, res) { res.render('extend',  data); })
+	.get('/prepend', function (req, res) { res.render('prepend', data); })
+	.get('/replace', function (req, res) { res.render('replace', data); })
 
 	// Start
 	.listen(3000);
