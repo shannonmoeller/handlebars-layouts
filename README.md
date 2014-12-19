@@ -70,11 +70,11 @@ The `{{#embed}}` helper allows you to reason about your partials as you would cl
 class Page extends Layout {
     body() {
         var gallery = new Gallery();
-        gallery.setBody('<img src="1.png" alt="" />\n<img src="2.png" alt="" />');
+        gallery.replaceBody('<img src="1.png" alt="" />\n<img src="2.png" alt="" />');
         
         var modal = new Modal();
         modal.prependTitle('Image 1 - ');
-        modal.setBody('<img src="1.png" alt="" />');
+        modal.replaceBody('<img src="1.png" alt="" />');
         
         return gallery.toString() + modal.toString();
     }
