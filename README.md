@@ -28,6 +28,16 @@ Loads a layout partial of a given name and defines block content.
 {{/extend}}
 ```
 
+The `{{#extend}}` helper allows you to reason about your layouts as you would class extension where the above is equivalent to the following psuedo code:
+
+```js
+class Page extends Layout {
+    title() {
+        return 'Example - ' + super();
+    }
+}
+```
+
 ### `{{#embed [partial]}}`
 
 - `partial` `String` - Name of partial to render.
@@ -52,6 +62,23 @@ Allows you to load a partial which itself extends from a layout. Blocks defined 
     {{/content}}
 
 {{/extend}}
+```
+
+The `{{#embed}}` helper allows you to reason about your partials as you would class instantiation where the above is equivalent to the following psuedo code:
+
+```js
+class Page extends Layout {
+    body() {
+        var gallery = new Gallery();
+        gallery.setBody('<img src="1.png" alt="" />\n<img src="2.png" alt="" />');
+        
+        var modal = new Modal();
+        modal.prependTitle('Image 1 - ');
+        modal.setBody('<img src="1.png" alt="" />');
+        
+        return gallery.toString() + body.toString();
+    }
+}
 ```
 
 ### `{{#block [name]}}`
