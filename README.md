@@ -76,7 +76,7 @@ class Page extends Layout {
         modal.prependTitle('Image 1 - ');
         modal.setBody('<img src="1.png" alt="" />');
         
-        return gallery.toString() + body.toString();
+        return gallery.toString() + modal.toString();
     }
 }
 ```
