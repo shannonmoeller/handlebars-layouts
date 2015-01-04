@@ -113,7 +113,7 @@ function layouts(handlebars) {
 		 * @param {String} name
 		 * @param {Object} options
 		 * @param {Function(Object)} options.fn
-		 * @return {String} Block content.
+		 * @return {String} Modified block content.
 		 */
 		block: function (name, options) {
 			options = options || {};
@@ -168,5 +168,4 @@ function layouts(handlebars) {
  */
 layouts.register = layouts;
 
-// Legacy
 module.exports = layouts;
