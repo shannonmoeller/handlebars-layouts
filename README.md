@@ -33,6 +33,10 @@ The `{{#extend}}` helper allows you to reason about your layouts as you would cl
 
 ```js
 class Page extends Layout {
+    constructor(data) {
+        this.keywords = data.keywords;
+    }
+
     title() {
         return 'Example - ' + super();
     }
@@ -70,11 +74,16 @@ The `{{#embed}}` helper allows you to reason about your partials as you would cl
 
 ```js
 class Page extends Layout {
-    body() {
+    body(data) {
         var gallery = new Gallery();
+
         gallery.replaceBody('<img src="1.png" alt="" />\n<img src="2.png" alt="" />');
 
-        var modal = new Modal();
+        var modal = new Modal({
+            foo: 'bar',
+            name: data.user.fullName
+        });
+
         modal.prependTitle('Image 1 - ');
         modal.replaceBody('<img src="1.png" alt="" />');
 
