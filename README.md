@@ -16,14 +16,15 @@ With [Bower](http://bower.io):
 
 ## Helpers
 
-### `{{#extend [partial]}}`
+### `{{#extend [partial] [key=value ...]}}`
 
 - `partial` `String` - Name of partial to render.
+- `attributes` `Object` _(Optional)_ - Arbitrary values that will be added to the context passed to the partial.
 
 Loads a layout partial of a given name and defines block content.
 
-```html
-{{#extend "layout"}}
+```handlebars
+{{#extend "layout" keywords="handlebars,hbs,layout"}}
     {{#content "title" mode="prepend"}}Example - {{/content}}
 {{/extend}}
 ```
@@ -38,13 +39,14 @@ class Page extends Layout {
 }
 ```
 
-### `{{#embed [partial]}}`
+### `{{#embed [partial] [key=value ...]}}`
 
 - `partial` `String` - Name of partial to render.
+- `attributes` `Object` _(Optional)_ - Arbitrary values that will be added to the context passed to the partial.
 
 Allows you to load a partial which itself extends from a layout. Blocks defined in embedded partials will not conflict with those in the primary layout.
 
-```html
+```handlebars
 {{#extend "layout"}}
 
     {{#content "body"}}
@@ -55,7 +57,7 @@ Allows you to load a partial which itself extends from a layout. Blocks defined 
             {{/content}}
         {{/embed}}
 
-        {{#embed "modal"}}
+        {{#embed "modal" foo="bar" name=user.fullName}}
             {{#content "title" mode="prepend"}}Image 1 - {{/content}}
             {{#content "body"}}<img src="1.png" alt="" />{{/content}}
         {{/embed}}
@@ -71,11 +73,11 @@ class Page extends Layout {
     body() {
         var gallery = new Gallery();
         gallery.replaceBody('<img src="1.png" alt="" />\n<img src="2.png" alt="" />');
-        
+
         var modal = new Modal();
         modal.prependTitle('Image 1 - ');
         modal.replaceBody('<img src="1.png" alt="" />');
-        
+
         return gallery.toString() + modal.toString();
     }
 }
@@ -87,7 +89,7 @@ class Page extends Layout {
 
 Defines a named block, with optional default content. Blocks may have content appended, prepended, or replaced entirely when extending or embedding. You may append and prepend to the same block multiple times.
 
-```html
+```handlebars
 {{#block "header"}}
     <h1>Hello World</h1>
 {{/block}}
@@ -101,6 +103,13 @@ Defines a named block, with optional default content. Blocks may have content ap
 {{/block}}
 ```
 
+Default block content is optional, and may be omitted.
+
+```handlebars
+<h1>{{{block "title"}}}</h1>
+<p>{{{block "description"}}}</p>
+```
+
 ### `{{#content [name] mode="(append|prepend|replace)"}}`
 
 - `name` `String` - Identifier of the block to modify.
@@ -110,7 +119,7 @@ Sets block content, optionally appending or prepending using the `mode` attribut
 
 Layout:
 
-```html
+```handlebars
 <html>
     ...
     <body>
@@ -131,7 +140,7 @@ Layout:
 
 Page:
 
-```html
+```handlebars
 {{#extend "layout"}}
 
     {{#content "header"}}
@@ -151,7 +160,7 @@ Page:
 
 Output:
 
-```html
+```handlebars
 <html>
     ...
     <body>
@@ -164,6 +173,12 @@ Output:
         <p>&copy; 1999</p>
     </body>
 </html>
+```
+
+Content is optional, and may be omitted. This will cause the `main` block to be replaced with an empty string, clearing out any default content.
+
+```handlebars
+{{{content "main"}}}
 ```
 
 ## Api
@@ -209,7 +224,7 @@ grunt.initConfig({
 
 ### Layout Partial
 
-```html
+```handlebars
 <!doctype html>
 <html lang="en-us">
 <head>
@@ -249,7 +264,7 @@ grunt.initConfig({
 
 ### Template
 
-```html
+```handlebars
 {{#extend "layout"}}
     {{#content "head" mode="append"}}
         <link rel="stylesheet" href="assets/css/home.css" />
@@ -301,7 +316,7 @@ console.log(output);
 
 ### Output (prettified for readability)
 
-```html
+```handlebars
 <!doctype html>
 <html lang="en-us">
 <head>

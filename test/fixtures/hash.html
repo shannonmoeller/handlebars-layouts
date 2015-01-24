@@ -1,0 +1,11 @@
+{{#extend "layout"}}
+	{{#content "body"}}
+		{{#each users}}
+			{{#embed "user" showBanner=isActive status="active"}}
+				{{#content "body"}}
+					<p>{{../../name.first}} {{../../name.last}}</p>
+				{{/content}}
+			{{/embed}}
+		{{/each}}
+	{{/content}}
+{{/extend}}

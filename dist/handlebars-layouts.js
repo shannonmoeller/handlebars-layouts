@@ -54,6 +54,29 @@ function applyAction(val, action) {
 	}
 }
 
+function mixin(target) {
+	var arg, key,
+		len = arguments.length,
+		i = 1;
+
+	for (; i < len; i++) {
+		arg = arguments[i];
+
+		if (!arg) {
+			continue;
+		}
+
+		for (key in arg) {
+			/* istanbul ignore else */
+			if (arg.hasOwnProperty(key)) {
+				target[key] = arg[key];
+			}
+		}
+	}
+
+	return target;
+}
+
 /**
  * Registers layout helpers on an instance of Handlebars.
  *
@@ -68,6 +91,7 @@ function layouts(handlebars) {
 		 * @param {String} name
 		 * @param {Object} options
 		 * @param {Function(Object)} options.fn
+		 * @param {Object} options.hash
 		 * @return {String} Rendered partial.
 		 */
 		extend: function (name, options) {
@@ -76,6 +100,9 @@ function layouts(handlebars) {
 			var fn = options.fn || noop,
 				context = Object.create(this || {}),
 				template = handlebars.partials[name];
+
+			// Mix attributes into context
+			mixin(context, options.hash);
 
 			// Partial template required
 			if (template == null) {
