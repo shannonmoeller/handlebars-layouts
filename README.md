@@ -74,14 +74,14 @@ The `{{#embed}}` helper allows you to reason about your partials as you would cl
 
 ```js
 class Page extends Layout {
-    body(data) {
+    body() {
         var gallery = new Gallery();
 
         gallery.replaceBody('<img src="1.png" alt="" />\n<img src="2.png" alt="" />');
 
         var modal = new Modal({
             foo: 'bar',
-            name: data.user.fullName
+            name: this.user.fullName
         });
 
         modal.prependTitle('Image 1 - ');
