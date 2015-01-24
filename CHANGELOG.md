@@ -1,3 +1,9 @@
+## 1.1.0
+
+Features:
+
+- Arbitrary attributes may now be given to `extend` and `embed` and are added to the partial's data context.
+
 ## 1.0.0
 
 Breaking changes:
