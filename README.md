@@ -33,8 +33,8 @@ The `{{#extend}}` helper allows you to reason about your layouts as you would cl
 
 ```js
 class Page extends Layout {
-    constructor(data) {
-        this.keywords = data.keywords;
+    constructor() {
+        this.keywords = 'handlebars,hbs,layout';
     }
 
     title() {
