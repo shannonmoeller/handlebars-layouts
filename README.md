@@ -360,21 +360,21 @@ console.log(output);
 </html>
 ```
 
-## Test
-
-```sh
-$ npm test
-```
-
 ## Contribute
 
 [![Tasks][waffle-img]][waffle-url] [![Chat][gitter-img]][gitter-url] [![Tip][gittip-img]][gittip-url]
 
 Standards for this project, including tests, code coverage, and semantics are enforced with a build tool. Pull requests must include passing tests with 100% code coverage and no linting errors.
 
-## License
+## Test
 
-MIT
+    $ npm test
+
+----
+
+© 2015 Shannon Moeller <me@shannonmoeller.com>
+
+Licensed under [MIT](http://shannonmoeller.com/mit.txt)
 
 [coveralls-img]: http://img.shields.io/coveralls/shannonmoeller/handlebars-layouts/master.svg?style=flat-square
 [coveralls-url]: https://coveralls.io/r/shannonmoeller/handlebars-layouts
