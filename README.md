@@ -24,7 +24,7 @@ With [Bower](http://bower.io):
 Loads a layout partial of a given name and defines block content.
 
 ```handlebars
-{{#extend "layout" keywords="handlebars,hbs,layout"}}
+{{#extend "layout" foo="bar"}}
     {{#content "title" mode="prepend"}}Example - {{/content}}
 {{/extend}}
 ```
@@ -34,7 +34,7 @@ The `{{#extend}}` helper allows you to reason about your layouts as you would cl
 ```js
 class Page extends Layout {
     constructor() {
-        this.keywords = 'handlebars,hbs,layout';
+        this.foo = 'bar';
     }
 
     title() {
