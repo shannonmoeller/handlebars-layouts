@@ -167,11 +167,11 @@ function layouts(handlebars) {
 			var fn = options.fn || noop;
 			names = names.split('||');
 
-			for (var i=0; i < names.length; i++) {
+			for (var i = 0; i < names.length; i++) {
 				var context = this || {},
 					name = names[i].trim(),
 					action = getActionsByName(context,name);
-	
+
 				if (!action.length) {
 					continue;
 				}
