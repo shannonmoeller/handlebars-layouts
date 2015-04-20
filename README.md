@@ -119,6 +119,39 @@ Default block content is optional, and may be omitted.
 <p>{{{block "description"}}}</p>
 ```
 
+### `{{#blockExists [name]}}`
+
+- `name` `String` - Block identifier.
+
+Checks if a named block exists. Allows additional markup to be used conditionally in layouts, dependant on whether the `{{#content [name]}}` is included on the page.
+
+```handlebars
+{{#blockExists "main"}}
+    <div class="main">
+        {{#block "main"}}
+    </div>
+{{/blockExists}}
+```
+
+Can be nested and combined via the `||` separator:
+
+```handlebars
+{{#blockExists "main||footer"}}
+    <div class="wrapper">
+        {{#blockExists "main"}}
+            <div class="main">
+                {{#block "main"}}
+            </div>
+        {{/blockExists}}
+        {{#blockExists "footer"}}
+            <div class="footer">
+                {{#block "footer"}}
+            </div>
+        {{/blockExists}}
+    </div>
+{{/blockExists}}
+```
+
 ### `{{#content [name] mode="(append|prepend|replace)"}}`
 
 - `name` `String` - Identifier of the block to modify.
