@@ -1,3 +1,9 @@
+## 1.2.0
+
+Features:
+
+- added `blockExists` helper to test if content exists.
+
 ## 1.1.0
 
 Features:
