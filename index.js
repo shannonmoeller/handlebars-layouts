@@ -165,7 +165,7 @@ function layouts(handlebars) {
 			options = options || {};
 
 			var fn = options.fn || noop;
-			names = names.split('||');
+			names = names ? names.split('||') : [];
 
 			for (var i = 0; i < names.length; i++) {
 				var context = this || {},
@@ -177,6 +177,8 @@ function layouts(handlebars) {
 				}
 				return fn(context);
 			}
+
+			return '';
 		},
 
 		/**
