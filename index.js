@@ -164,21 +164,21 @@ function layouts(handlebars) {
 		blockExists: function (names, options) {
 			options = options || {};
 
-			var fn = options.fn || noop,
-				names = names.split('||');
+			var fn = options.fn || noop;
+			names = names.split('||');
 
 			for (var i=0; i < names.length; i++) {
 				var context = this || {},
 					name = names[i].trim(),
 					action = getActionsByName(context,name);
-					
+	
 				if (!action.length) {
 					continue;
 				}
 				return fn(context);
 			}
 		},
-		
+
 		/**
 		 * @method content
 		 * @param {String} name
