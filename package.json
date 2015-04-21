@@ -26,7 +26,8 @@
   },
   "scripts": {
     "coveralls": "cat ./coverage/lcov.info | coveralls",
-    "test": "gulp test"
+    "test": "gulp test",
+    "zuul": "zuul -- test/handlebars-layouts.spec.js"
   },
   "devDependencies": {
     "browserify": "^6.1.0",
@@ -44,7 +45,8 @@
     "jshint-stylish": "^1.0.0",
     "through2": "^0.6.5",
     "vinyl-fs": "^0.3.10",
-    "vinyl-source-stream": "^1.0.0"
+    "vinyl-source-stream": "^1.0.0",
+    "zuul": "^2.1.1"
   },
   "engines": {
     "node": ">= 0.10"

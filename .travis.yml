@@ -1,5 +1,10 @@
 language: node_js
 node_js:
-  - 0.10
+- '0.10'
 after_script:
-  - npm run coveralls
+- npm run coveralls
+- npm run zuul
+env:
+  global:
+    - secure: QY6b60+n103jWc/jWI958J6wKnMl7tl/CbGiwZx0UDX5KlT95Lor+PDtx1nnayuLrrr9t44xT5ETj5e4M2ggL6PPqfYpKpZEWKzPFXWlj4w98H8VAHw0ZuKbnECEpmsQKAh+58i82hxIeGVryD8CSjCABY2iVOglFo5Xn4kRAGw=
+    - secure: DOC+c0+7fRzJYXSL0EpQn5xrta6q2YmMZdymfOPhadNDM1S7jDe+LwIAZdchpv5MV7wkacSYZHZIzCy91rV9wGT9P8daXx7+xqD6ah18cGTU5Fapvv26J413bxZvZxbvJe4ItSJJSmaPY49icxCWXQLWpaIzeU94JuEfJ+K8pjQ=

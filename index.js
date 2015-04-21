@@ -34,20 +34,16 @@ function getActionsByName(context, name) {
 
 function applyAction(val, action) {
 	// jshint validthis:true
-
 	switch (action.mode) {
 		case 'append': {
 			return val + action.fn(this);
 		}
-
 		case 'prepend': {
 			return action.fn(this) + val;
 		}
-
 		case 'replace': {
 			return action.fn(this);
 		}
-
 		default: {
 			return val;
 		}
@@ -128,6 +124,10 @@ function layouts(handlebars) {
 
 		/**
 		 * @method embed
+		 * @param {String} name
+		 * @param {Object} options
+		 * @param {Function(Object)} options.fn
+		 * @param {Object} options.hash
 		 * @return {String} Rendered partial.
 		 */
 		embed: function () {
