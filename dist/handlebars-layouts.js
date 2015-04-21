@@ -173,13 +173,8 @@ function layouts(handlebars) {
 					name = names[i].trim(),
 					action = getActionsByName(context,name);
 
-				if (!action.length) {
-					continue;
-				}
-				return fn(context);
+				return action.length ? fn(context) : '';
 			}
-
-			return '';
 		},
 
 		/**

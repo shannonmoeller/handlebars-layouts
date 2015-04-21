@@ -15,11 +15,13 @@
 			{{/block}}
 		</div>
 
+		{{#blockExists "body"}}
 		<div class="site-bd" role="main">
 			{{#block "body"}}
 				<p>Lorem ipsum.</p>
 			{{/block}}
 		</div>
+		{{/blockExists}}
 
 		<div class="site-ft" role="contentinfo">
 			{{#block "footer"}}
