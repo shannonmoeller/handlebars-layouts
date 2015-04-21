@@ -23,6 +23,7 @@ describe('handlebars-layouts spec', function () {
 				expect(h.extend).to.be.a(Function);
 				expect(h.embed).to.be.a(Function);
 				expect(h.block).to.be.a(Function);
+				expect(h.blockExists).to.be.a(Function);
 				expect(h.content).to.be.a(Function);
 
 				helpers = h;
