@@ -23,6 +23,7 @@ describe('handlebars-layouts spec', function () {
 				expect(h.extend).to.be.a(Function);
 				expect(h.embed).to.be.a(Function);
 				expect(h.block).to.be.a(Function);
+				expect(h.blockExists).to.be.a(Function);
 				expect(h.content).to.be.a(Function);
 
 				helpers = h;
@@ -72,6 +73,17 @@ describe('handlebars-layouts spec', function () {
 
 			expect(helpers.block.call(null, 'foo')).to.be('');
 			expect(helpers.block.call({ foo: 'bar' }, 'foo')).to.be('');
+
+			expect(count).to.be(1);
+		});
+	});
+
+	describe('#blockExists', function () {
+		it('should use fallback values as needed', function () {
+			handlebarsLayouts(hbs);
+
+			expect(helpers.blockExists.call(null, 'foo')).to.be('');
+			expect(helpers.blockExists.call({ foo: 'bar' }, 'foo')).to.be('');
 
 			expect(count).to.be(1);
 		});

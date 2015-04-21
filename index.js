@@ -155,6 +155,28 @@ function layouts(handlebars) {
 		},
 
 		/**
+		* @method blockExists
+		* @param {String} names
+		* @param {Object} options
+		* @param {Function(Object)} options.fn
+		* @return {String} Modified block content.
+		*/
+		blockExists: function (names, options) {
+			options = options || {};
+
+			var fn = options.fn || noop;
+			names = names ? names.split('||') : [];
+
+			for (var i = 0; i < names.length; i++) {
+				var context = this || {},
+					name = names[i].trim(),
+					action = getActionsByName(context,name);
+
+				return action.length ? fn(context) : '';
+			}
+		},
+
+		/**
 		 * @method content
 		 * @param {String} name
 		 * @param {Object} options
