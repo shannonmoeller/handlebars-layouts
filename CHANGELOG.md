@@ -1,3 +1,13 @@
+## 2.0.0
+
+Breaking changes:
+
+- The `handlebarsLayouts(handlebars)` function no longer automatically registers helpers. Instead it returns an object which is compatible with the `Handlebars.registerHelper` method. If you want the helpers to automatically be registered, use `handlebarsLayouts.register(handlebars)` instead. The return value of both functions has been changed to be the object of helpers rather than the passed-in handlebars instance. (#15)
+
+Features:
+
+- Exposed `@content` variable to facilitate conditional blocks. (#16)
+
 ## 1.1.0
 
 Features:
