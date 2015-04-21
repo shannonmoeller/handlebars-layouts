@@ -1,10 +1,10 @@
 'use strict';
 
 var handlebarsLayouts = require('../index'),
-	expect = require('expect.js');
+	expect = require('expect');
 
 describe('handlebars-layouts spec', function () {
-	var count, hbs, helpers;
+	var count, hbs;
 
 	beforeEach(function () {
 		count = 0;
@@ -17,74 +17,77 @@ describe('handlebars-layouts spec', function () {
 					return (data && data.foo) || '';
 				}
 			},
-			registerHelper: function (h) {
+			registerHelper: function (helpers) {
 				count++;
 
-				expect(h.extend).to.be.a(Function);
-				expect(h.embed).to.be.a(Function);
-				expect(h.block).to.be.a(Function);
-				expect(h.content).to.be.a(Function);
-
-				helpers = h;
+				expect(helpers.extend).toBeA(Function);
+				expect(helpers.embed).toBeA(Function);
+				expect(helpers.block).toBeA(Function);
+				expect(helpers.content).toBeA(Function);
 			}
 		};
 	});
 
-	it('should register helpers', function () {
-		handlebarsLayouts(hbs);
+	it('should generate helpers', function () {
+		var helpers = handlebarsLayouts(hbs);
 
-		expect(count).to.be(1);
+		expect(helpers.extend).toBeA(Function);
+		expect(helpers.embed).toBeA(Function);
+		expect(helpers.block).toBeA(Function);
+		expect(helpers.content).toBeA(Function);
+
+		expect(count).toBe(0);
 	});
 
 	describe('register', function () {
 		it('should register helpers', function () {
 			handlebarsLayouts.register(hbs);
 
-			expect(count).to.be(1);
+			expect(count).toBe(1);
 		});
 	});
 
 	describe('#extend', function () {
 		it('should use fallback values as needed', function () {
-			handlebarsLayouts(hbs);
+			var helpers = handlebarsLayouts.register(hbs);
 
-			expect(helpers.extend.call(null, 'foo')).to.be('');
-			expect(helpers.extend.call({ foo: 'bar' }, 'foo')).to.be('bar');
+			expect(helpers.extend.call(null, 'foo')).toBe('');
+			expect(helpers.extend.call({ foo: 'bar' }, 'foo')).toBe('bar');
 
-			expect(count).to.be(3);
+			expect(count).toBe(3);
 		});
 	});
 
 	describe('#embed', function () {
 		it('should use fallback values as needed', function () {
-			handlebarsLayouts(hbs);
+			var helpers = handlebarsLayouts.register(hbs);
 
-			expect(helpers.embed.call(null, 'foo')).to.be('');
-			expect(helpers.embed.call({ foo: 'bar' }, 'foo')).to.be('bar');
+			expect(helpers.embed.call(null, 'foo')).toBe('');
+			expect(helpers.embed.call({ foo: 'bar' }, 'foo')).toBe('bar');
 
-			expect(count).to.be(3);
+			expect(count).toBe(3);
 		});
 	});
 
 	describe('#block', function () {
 		it('should use fallback values as needed', function () {
-			handlebarsLayouts(hbs);
+			var helpers = handlebarsLayouts.register(hbs);
 
-			expect(helpers.block.call(null, 'foo')).to.be('');
-			expect(helpers.block.call({ foo: 'bar' }, 'foo')).to.be('');
+			expect(helpers.block.call(null, 'foo')).toBe('');
+			expect(helpers.block.call({ foo: 'bar' }, 'foo')).toBe('');
 
-			expect(count).to.be(1);
+			expect(count).toBe(1);
 		});
 	});
 
 	describe('#content', function () {
 		it('should use fallback values as needed', function () {
-			handlebarsLayouts(hbs);
+			var helpers = handlebarsLayouts.register(hbs);
 
-			expect(helpers.content.call(null, 'foo')).to.be('');
-			expect(helpers.content.call({ foo: 'bar' }, 'foo')).to.be('');
+			expect(helpers.content.call(null, 'foo')).toBe('');
+			expect(helpers.content.call({ foo: 'bar' }, 'foo')).toBe('');
 
-			expect(count).to.be(1);
+			expect(count).toBe(1);
 		});
 	});
 });

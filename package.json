@@ -30,8 +30,9 @@
   },
   "devDependencies": {
     "browserify": "^6.1.0",
+    "consolidate": "^0.12.1",
     "coveralls": "^2.11.2",
-    "expect.js": "^0.3.1",
+    "expect": "^1.6.0",
     "express": "^4.9.8",
     "gulp": "^3.8.9",
     "gulp-istanbul": "^0.3.1",
@@ -40,10 +41,8 @@
     "gulp-mocha": "^1.1.1",
     "gulp-prettify": "^0.3.0",
     "handlebars": "~2.0",
-    "hbs": "^2.7.0",
-    "hbs-utils": "0.0.3",
     "jshint-stylish": "^1.0.0",
-    "map-stream": "^0.1.0",
+    "through2": "^0.6.5",
     "vinyl-fs": "^0.3.10",
     "vinyl-source-stream": "^1.0.0"
   },

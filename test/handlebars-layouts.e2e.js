@@ -1,66 +1,111 @@
 'use strict';
 
-var handlebarsLayouts = require('../index'),
-	expect = require('expect.js'),
+var handlebars,
+	handlebarsLayouts,
+	expect = require('expect'),
 	fs = require('fs'),
-	handlebars = require('handlebars'),
-	map = require('map-stream'),
-	path = require('path'),
-	vs = require('vinyl-fs');
+	through = require('through2'),
+	vinylFs = require('vinyl-fs'),
+
+	config = {
+		partials: __dirname + '/fixtures/partials/',
+		fixtures: __dirname + '/fixtures/templates/',
+		expected: __dirname + '/expected/templates/'
+	};
 
 describe('handlebars-layouts e2e', function () {
-	function toPartial(file, cb) {
-		var name = path.basename(file.path).replace(/\.[^.]+$/, '');
-
-		handlebars.registerPartial(name, file.contents.toString());
-
-		cb(null, file);
+	function read(filepath) {
+		return fs.readFileSync(filepath, 'utf8');
 	}
 
-	function toEqualExpected(file, cb) {
-		var data = require('./fixtures/data/users.json'),
-			expected = file.path.replace('fixtures', 'expected'),
-			template = handlebars.compile(file.contents.toString()),
-			retval = template(data);
+	function testWithFile(filename, data, done) {
+		var fixture = config.fixtures + filename,
+			expected = config.expected + filename;
 
-		expect(retval).to.be(fs.readFileSync(expected, 'utf8'));
-
-		cb(null, file);
-	}
-
-	before(function (done) {
-		// Register Helpers
-		handlebarsLayouts(handlebars);
-
-		// Register Partials
-		vs.src(__dirname + '/fixtures/partials/*.hbs')
-			.pipe(map(toPartial))
-			.on('error', done)
-			.on('end', done);
-	});
-
-	it('should throw an error if partial is not registered', function () {
-		function undef() {
-			var template = handlebars.compile('{{#extend "undef"}}{{/extend}}');
-
-			template({});
+		function compileFile(file, enc, cb) {
+			try {
+				var template = handlebars.compile(String(file.contents));
+				file.contents = new Buffer(template(data));
+				cb(null, file);
+			}
+			catch (err) {
+				cb(err);
+			}
 		}
 
-		expect(undef).to.throwError();
+		function expectFile(file) {
+			expect(String(file.contents)).toBe(read(expected));
+			done();
+		}
+
+		function expectError(err) {
+			expect(err.message).toContain('derp');
+			done();
+		}
+
+		vinylFs
+			.src(fixture)
+			.pipe(through.obj(compileFile))
+			.on('data', expectFile)
+			.on('error', expectError);
+	}
+
+	beforeEach(function () {
+		// Delete
+		delete require.cache[require.resolve('handlebars')];
+		delete require.cache[require.resolve('../index')];
+
+		// Reload
+		handlebars = require('handlebars');
+		handlebarsLayouts = require('../index');
+
+		// Register helpers
+		handlebars.registerHelper(handlebarsLayouts(handlebars));
+
+		// Register partials
+		handlebars.registerPartial({
+			layout:     read(config.partials + '/layout.hbs'),
+			layout2col: read(config.partials + '/layout2col.hbs'),
+			media:      read(config.partials + '/media.hbs'),
+			user:       read(config.partials + '/user.hbs')
+		});
 	});
 
-	it('should not compile if partial is already a function', function () {
-		var template = handlebars.compile('{{#extend "func"}}{{/extend}}');
+	it('should extend layouts', function (done) {
+		var data = require('./fixtures/data/users.json');
 
-		handlebars.registerPartial('func', handlebars.compile('func'));
-
-		expect(template({})).to.be('func');
+		testWithFile('deep-extend.html', data, done);
 	});
 
-	it('should render layouts properly', function (done) {
-		vs.src(__dirname + '/fixtures/*.html')
-			.pipe(map(toEqualExpected))
-			.on('error', done)
-			.on('end', done);
+	it('should embed layouts', function (done) {
+		var data = require('./fixtures/data/users.json');
+
+		testWithFile('embed.html', data, done);
+	});
+
+	it('should append content', function (done) {
+		testWithFile('append.html', { title: 'append' }, done);
+	});
+
+	it('should prepend content', function (done) {
+		testWithFile('prepend.html', { title: 'prepend' }, done);
+	});
+
+	it('should replace content', function (done) {
+		testWithFile('replace.html', { title: 'replace' }, done);
+	});
+
+	it('should ignore bogus content', function (done) {
+		testWithFile('bogus.html', { title: 'bogus' }, done);
+	});
+
+	it('should pass through hash values', function (done) {
+		var data = require('./fixtures/data/users.json');
+
+		testWithFile('hash.html', data, done);
+	});
+
+	it('should throw an error if partial is not registered', function (done) {
+		testWithFile('error.html', {}, done);
 	});
 });

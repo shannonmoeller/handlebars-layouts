@@ -1,33 +1,39 @@
 'use strict';
 
 var handlebarsLayouts = require('../index'),
+	consolidate = require('consolidate'),
 	express = require('express'),
-	hbs = require('hbs'),
-	utils = require('hbs-utils')(hbs),
+	fs = require('fs'),
+	handlebars = require('handlebars'),
 	data = require('./fixtures/data/users.json'),
-	views = process.cwd() + '/fixtures',
-	partials = views + '/partials';
+	fixtures = process.cwd() + '/fixtures',
+	views = fixtures + '/templates',
+	partials = fixtures + '/partials';
 
 // Register helpers
-handlebarsLayouts(hbs.handlebars);
+handlebars.registerHelper(handlebarsLayouts(handlebars));
 
 // Register partials
-utils.registerPartials(partials);
+handlebars.registerPartial({
+	layout:     fs.readFileSync(partials + '/layout.hbs', 'utf8'),
+	layout2col: fs.readFileSync(partials + '/layout2col.hbs', 'utf8'),
+	media:      fs.readFileSync(partials + '/media.hbs', 'utf8'),
+	user:       fs.readFileSync(partials + '/user.hbs', 'utf8')
+});
 
 // Server
 express()
 	// Settings
 	.set('views', views)
 	.set('view engine', 'html')
-	.engine('html', require('hbs').__express)
+
+	// Engines
+	.engine('html', consolidate.handlebars)
 
 	// Routes
-	.get('/append',       function (req, res) { res.render('append',      data); })
-	.get('/bogus',        function (req, res) { res.render('bogus',       data); })
-	.get('/deep-extend',  function (req, res) { res.render('deep-extend', data); })
-	.get('/embed',        function (req, res) { res.render('embed',       data); })
-	.get('/prepend',      function (req, res) { res.render('prepend',     data); })
-	.get('/replace',      function (req, res) { res.render('replace',     data); })
+	.get('/:id', function (req, res) {
+		res.render(req.params.id, data);
+	})
 
 	// Start
 	.listen(3000);
