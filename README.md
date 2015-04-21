@@ -190,43 +190,108 @@ Content is optional, and may be omitted. This will cause the `main` block to be 
 {{{content "main"}}}
 ```
 
+### Conditional Blocks
+
+There are times where you need to wrap a block with an element or use a different class depending on whether content has been provided for a block. For this purpose, `handlebars-layouts` exposes a special `@content` variable which can be used to check whether content has been provided for a block.
+
+For example, you may wish to have an optional column in a grid layout:
+
+```handlebars
+{{!-- layout.hbs --}}
+<div class="grid">
+    <div class="grid-col {{#if @content.right}}grid-col_2of3{{else}}grid-col_full{{/if}}">
+        {{{block "left"}}}
+    </div>
+    {{#if @content.right}}
+        <div class="grid-col grid-col_1of3">
+            {{{block "right"}}}
+        </div>
+    {{/if}}
+</div>
+```
+
+For a page that only needs a left column, you may omit defining content for the `right` block:
+
+```handlebars
+{{!-- page.html --}}
+{{#extend "layout"}}
+
+    {{#content "left"}}
+        <p>Left</p>
+    {{/content}}
+    
+{{/extend}}
+```
+
+Resulting in:
+
+```html
+<div class="grid">
+    <div class="grid-col grid-col_full">
+        <p>Left</p>
+    </div>
+</div>
+```
+
+For a page with two columns, simply define content for both columns:
+
+```handlebars
+{{!-- page.html --}}
+{{#extend "layout"}}
+
+    {{#content "left"}}
+        <p>Left</p>
+    {{/content}}
+
+    {{#content "right"}}
+        <p>Right</p>
+    {{/content}}
+    
+{{/extend}}
+```
+
+Resulting in:
+
+```html
+<div class="grid">
+    <div class="grid-col grid-col_2of3">
+        <p>Left</p>
+    </div>
+    <div class="grid-col grid-col_1of3">
+        <p>Right</p>
+    </div>
+</div>
+```
+
 ## Api
 
 Helpers are registered by passing in your instance of Handlebars. This allows
 you to selectively register the helpers on various instances of Handlebars.
 
-### `layouts(handlebars)`
+### `layouts(handlebars) : Object`
 
 - `handlebars` `Handlebars` - An instance of Handlebars.
+
+Generates an object containing the layout helpers suitible for passing into `registerHelper`.
 
 ```js
 var handlebars = require('handlebars'),
     layouts = require('handlebars-layouts');
 
-layouts(handlebars);
+handlebars.registerHelper(layouts(handlebars));
 ```
 
-### `layouts.register(handlebars)`
+### `layouts.register(handlebars) : Object`
 
 - `handlebars` `Handlebars` - An instance of Handlebars.
 
-Helpers are also exposed via a `register` method for use with [Assemble](http://assemble.io/).
+Generates an object containing the layout helpers and automatically passes them `registerHelper`.
 
 ```js
 var handlebars = require('handlebars'),
     layouts = require('handlebars-layouts');
 
 layouts.register(handlebars);
-
-// or
-
-grunt.initConfig({
-    assemble: {
-        options: {
-            helpers: ['path/to/handlebars-layouts.js']
-        }
-    }
-});
 ```
 
 ## Example
