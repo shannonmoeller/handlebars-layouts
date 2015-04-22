@@ -285,7 +285,7 @@ handlebars.registerHelper(layouts(handlebars));
 
 - `handlebars` `Handlebars` - An instance of Handlebars.
 
-Generates an object containing the layout helpers and automatically passes them `registerHelper`.
+Generates an object containing the layout helpers and passes them into `registerHelper`.
 
 ```js
 var handlebars = require('handlebars'),
