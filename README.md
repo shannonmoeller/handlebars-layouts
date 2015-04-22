@@ -233,7 +233,7 @@ Resulting in:
 </div>
 ```
 
-For a page with two columns, simply define content for both columns:
+For a page with two columns, simply define content for both blocks:
 
 ```handlebars
 {{!-- page.html --}}
@@ -296,7 +296,7 @@ layouts.register(handlebars);
 
 ## Example
 
-### Layout Partial
+### layout.hbs
 
 ```handlebars
 <!doctype html>
@@ -336,7 +336,7 @@ layouts.register(handlebars);
 </html>
 ```
 
-### Template
+### page.html
 
 ```handlebars
 {{#extend "layout"}}
@@ -363,17 +363,17 @@ layouts.register(handlebars);
 ### Putting Them Together
 
 ```js
-// Load Handlebars
-var Handlebars = require('handlebars');
+var handlebars = require('handlebars');
+var handlebarsLayouts = require('handlebars-layouts');
 
 // Register helpers
-require('handlebars-layouts')(Handlebars);
+handlebars.registerHelper(handlebarsLayouts(handlebars));
 
 // Register partials
-Handlebars.registerPartial('layout', fs.readFileSync('layout.html', 'utf8'));
+handlebars.registerPartial('layout', fs.readFileSync('layout.hbs', 'utf8'));
 
 // Compile template
-var template = Handlebars.compile(fs.readFileSync('template.html', 'utf8'));
+var template = handlebars.compile(fs.readFileSync('page.html', 'utf8'));
 
 // Render template
 var output = template({
