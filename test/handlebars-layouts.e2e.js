@@ -10,7 +10,8 @@ var handlebars,
 	config = {
 		partials: __dirname + '/fixtures/partials/',
 		fixtures: __dirname + '/fixtures/templates/',
-		expected: __dirname + '/expected/templates/'
+		expected: __dirname + '/expected/templates/',
+		actual: __dirname + '/actual/templates/'
 	};
 
 describe('handlebars-layouts e2e', function () {
@@ -46,6 +47,7 @@ describe('handlebars-layouts e2e', function () {
 		vinylFs
 			.src(fixture)
 			.pipe(through.obj(compileFile))
+			// .pipe(vinylFs.dest(config.actual))
 			.on('data', expectFile)
 			.on('error', expectError);
 	}
@@ -64,6 +66,9 @@ describe('handlebars-layouts e2e', function () {
 
 		// Register partials
 		handlebars.registerPartial({
+			'deep-a':   read(config.partials + '/deep-a.hbs'),
+			'deep-b':   read(config.partials + '/deep-b.hbs'),
+			'deep-c':   read(config.partials + '/deep-c.hbs'),
 			layout:     read(config.partials + '/layout.hbs'),
 			layout2col: read(config.partials + '/layout2col.hbs'),
 			media:      read(config.partials + '/media.hbs'),
@@ -75,6 +80,10 @@ describe('handlebars-layouts e2e', function () {
 		var data = require('./fixtures/data/users.json');
 
 		testWithFile('extend.html', data, done);
+	});
+
+	it('should deeply extend layouts', function (done) {
+		testWithFile('deep-extend.html', {}, done);
 	});
 
 	it('should embed layouts', function (done) {

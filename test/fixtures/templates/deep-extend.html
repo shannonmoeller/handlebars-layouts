@@ -1,23 +1,25 @@
-{{#extend "deep-b"}}
+{{#extend "deep-c"}}
 	{{#content "top" mode="prepend"}}
-		<p>c1</p>
+		<p>d1</p>
 	{{/content}}
 
 	{{#content "top" mode="prepend"}}
-		<p>c1.1</p>
+		<p>d1.1</p>
 	{{/content}}
 
 	{{#content "middle"}}
-		<p>c2</p>
+		<p>d2</p>
 	{{/content}}
 
 	{{#content "bottom" mode="append"}}
-		<p>c3</p>
-
-		{{{block "c"}}}
+		<p>d3</p>
 	{{/content}}
 
 	{{#content "b" mode="append"}}
-		<p>c4</p>
+		<p>d4</p>
+	{{/content}}
+
+	{{#content "c" mode="append"}}
+		<p>d5</p>
 	{{/content}}
 {{/extend}}

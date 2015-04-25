@@ -15,7 +15,7 @@ function applyStack(context) {
 	var stack = getStack(context);
 
 	while (stack.length) {
-		stack.pop()(context);
+		stack.shift()(context);
 	}
 }
 
