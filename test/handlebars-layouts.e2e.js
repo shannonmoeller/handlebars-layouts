@@ -74,7 +74,7 @@ describe('handlebars-layouts e2e', function () {
 	it('should extend layouts', function (done) {
 		var data = require('./fixtures/data/users.json');
 
-		testWithFile('deep-extend.html', data, done);
+		testWithFile('extend.html', data, done);
 	});
 
 	it('should embed layouts', function (done) {
