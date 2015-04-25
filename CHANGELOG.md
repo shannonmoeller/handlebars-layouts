@@ -1,3 +1,15 @@
+## 2.0.2
+
+Bugfixes:
+
+- Fixed a regression in the order of content rendering. ([#18](https://github.com/shannonmoeller/handlebars-layouts/issues/18))
+
+## 2.0.1
+
+Bugfixes:
+
+- Added files missing from a bad commit.
+
 ## 2.0.0
 
 Breaking changes:
