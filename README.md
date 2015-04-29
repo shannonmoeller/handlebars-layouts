@@ -363,10 +363,10 @@ Resulting in:
 
 ```js
 var handlebars = require('handlebars');
-var handlebarsLayouts = require('handlebars-layouts');
+var layouts = require('handlebars-layouts');
 
 // Register helpers
-handlebars.registerHelper(handlebarsLayouts(handlebars));
+handlebars.registerHelper(layouts(handlebars));
 
 // Register partials
 handlebars.registerPartial('layout', fs.readFileSync('layout.hbs', 'utf8'));
