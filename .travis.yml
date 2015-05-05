@@ -1,9 +1,10 @@
 language: node_js
 node_js:
-- '0.10'
+  - node
+  - iojs
 after_script:
-- npm run coveralls
-- npm run zuul
+  - npm run coveralls
+  - npm run zuul
 env:
   global:
     - secure: QY6b60+n103jWc/jWI958J6wKnMl7tl/CbGiwZx0UDX5KlT95Lor+PDtx1nnayuLrrr9t44xT5ETj5e4M2ggL6PPqfYpKpZEWKzPFXWlj4w98H8VAHw0ZuKbnECEpmsQKAh+58i82hxIeGVryD8CSjCABY2iVOglFo5Xn4kRAGw=
