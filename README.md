@@ -249,7 +249,7 @@ For a page that only needs a left column, you may omit defining content for the 
     {{#content "left"}}
         <p>Left</p>
     {{/content}}
-    
+
 {{/extend}}
 ```
 
@@ -276,7 +276,7 @@ For a page with two columns, simply define content for both blocks:
     {{#content "right"}}
         <p>Right</p>
     {{/content}}
-    
+
 {{/extend}}
 ```
 
@@ -444,7 +444,7 @@ Licensed under [MIT](http://shannonmoeller.com/mit.txt)
 [coveralls-url]: https://coveralls.io/r/shannonmoeller/handlebars-layouts
 [downloads-img]: http://img.shields.io/npm/dm/handlebars-layouts.svg?style=flat-square
 [gitter-img]:    http://img.shields.io/badge/gitter-join_chat-1dce73.svg?style=flat-square
-[gitter-url]:    https://gitter.im/shannonmoeller/handlebars-layouts
+[gitter-url]:    https://gitter.im/shannonmoeller/shannonmoeller
 [gittip-img]:    http://img.shields.io/gittip/shannonmoeller.svg?style=flat-square
 [gittip-url]:    https://www.gittip.com/shannonmoeller
 [npm-img]:       http://img.shields.io/npm/v/handlebars-layouts.svg?style=flat-square
