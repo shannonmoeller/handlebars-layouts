@@ -85,16 +85,20 @@ function layouts(handlebars) {
 		/**
 		 * @method extend
 		 * @param {String} name
-		 * @param {Object} options
-		 * @param {Function(Object)} options.fn
-		 * @param {Object} options.hash
 		 * @return {String} Rendered partial.
 		 */
-		extend: function (name, options) {
-			options = options || {};
+		extend: function (name) {
+			var context, options = null;
+
+			if (arguments[2] == undefined) {
+				context = Object.create(this || {});
+				options = arguments[1] || {};
+			} else {
+				context = Object.create(arguments[1] || {});
+				options = arguments[2] || {};
+			}
 
 			var fn = options.fn || noop,
-				context = Object.create(this || {}),
 				template = handlebars.partials[name];
 
 			// Mix attributes into context
