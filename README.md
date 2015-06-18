@@ -142,13 +142,6 @@ Defines a named block, with optional default content. Blocks may have content ap
 {{/block}}
 ```
 
-Default block content is optional, and may be omitted.
-
-```handlebars
-<h1>{{{block "title"}}}</h1>
-<p>{{{block "description"}}}</p>
-```
-
 ### `{{#content [name] mode="(append|prepend|replace)"}}`
 
 - `name` `String` - Identifier of the block to modify.
@@ -214,25 +207,19 @@ Output:
 </html>
 ```
 
-Content is optional, and may be omitted. This will cause the `main` block to be replaced with an empty string, clearing out any default content.
-
-```handlebars
-{{{content "main"}}}
-```
-
 ### Conditional Blocks
 
-There are times where you need to wrap a block with an element or use a different class depending on whether content has been provided for a block. For this purpose, `handlebars-layouts` exposes a special `@content` variable which can be used to check whether content has been provided for a block.
+There are times where you need to wrap a block with an element or use a different class depending on whether content has been provided for a block. For this purpose, the `content` helper may be called as a [subexpression](http://handlebarsjs.com/expressions.html#subexpressions) to check whether content has been provided for a block.
 
 For example, you may wish to have an optional column in a grid layout:
 
 ```handlebars
 {{!-- layout.hbs --}}
 <div class="grid">
-    <div class="grid-col {{#if @content.right}}grid-col_2of3{{else}}grid-col_full{{/if}}">
+    <div class="grid-col {{#if (content "right")}}grid-col_2of3{{else}}grid-col_full{{/if}}">
         {{{block "left"}}}
     </div>
-    {{#if @content.right}}
+    {{#if (content "right")}}
         <div class="grid-col grid-col_1of3">
             {{{block "right"}}}
         </div>

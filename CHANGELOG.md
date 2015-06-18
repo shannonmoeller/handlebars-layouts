@@ -1,3 +1,18 @@
+## 3.0.0
+
+Breaking Changes:
+
+- The `@content` value has been removed in favor of the updated `content` helper.
+
+Features:
+
+- The `content` helper may now be used as a subexpression to check for the existance of block content. ([#22](https://github.com/shannonmoeller/handlebars-layouts/issues/22))
+
+```handlebars
+Before: {{#if @content.foo}}    {{{block "foo"}}} {{/if}}
+After:  {{#if (content "foo")}} {{{block "foo"}}} {{/if}}
+```
+
 ## 2.0.2
 
 Bugfixes:

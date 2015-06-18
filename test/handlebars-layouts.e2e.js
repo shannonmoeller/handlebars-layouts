@@ -24,10 +24,12 @@ describe('handlebars-layouts e2e', function () {
 			expected = config.expected + filename;
 
 		function compileFile(file, enc, cb) {
+			// jshint validthis: true
 			try {
 				var template = handlebars.compile(String(file.contents));
 				file.contents = new Buffer(template(data));
-				cb(null, file);
+				this.push(file);
+				cb();
 			}
 			catch (err) {
 				cb(err);

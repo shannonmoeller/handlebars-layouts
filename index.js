@@ -114,12 +114,7 @@ function layouts(handlebars) {
 			getStack(context).push(fn);
 
 			// Render partial
-			return template(context, {
-				data: {
-					// Expose actions as `@content`
-					content: getActions(context)
-				}
-			});
+			return template(context);
 		},
 
 		/**
@@ -174,19 +169,23 @@ function layouts(handlebars) {
 		content: function (name, options) {
 			options = options || {};
 
-			var fn = options.fn || noop,
+			var fn = options.fn,
 				hash = options.hash || {},
 				mode = hash.mode || 'replace',
 				context = this || {};
 
 			applyStack(context);
 
+			// Getter
+			if (!fn) {
+				return name in getActions(context);
+			}
+
+			// Setter
 			getActionsByName(context, name).push({
 				mode: mode.toLowerCase(),
 				fn: fn
 			});
-
-			return '';
 		}
 	};
 

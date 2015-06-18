@@ -27,7 +27,8 @@ gulp.task('cover', function () {
 
 	return gulp
 		.src(paths.src)
-		.pipe(istanbul());
+		.pipe(istanbul())
+		.pipe(istanbul.hookRequire());
 });
 
 gulp.task('test', ['lint', 'cover'], function () {

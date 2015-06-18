@@ -1,15 +1,13 @@
 <!doctype html>
 <html lang="en-us">
 <head>
-	{{#block "head"}}
 		<title>{{title}}</title>
 
 		<link rel="stylesheet" href="assets/css/screen.css" />
-	{{/block}}
 </head>
 <body>
 	<div class="site">
-		{{#if @content.header}}
+		{{#if (content "header")}}
 			<div class="site-hd" role="banner">
 				{{#block "header"}}
 					<h1>{{title}}</h1>
@@ -23,7 +21,7 @@
 			{{/block}}
 		</div>
 
-		{{#if @content.footer}}
+		{{#if (content "footer")}}
 			<div class="site-ft" role="contentinfo">
 				{{#block "footer"}}
 					<small>&copy; 1984</small>

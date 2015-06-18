@@ -1,6 +1,6 @@
 {
   "name": "handlebars-layouts",
-  "version": "2.0.2",
+  "version": "3.0.0",
   "description": "Handlebars helpers which implement layout blocks similar to Jade, Jinja, Swig, and Twig.",
   "keywords": [
     "blocks",
@@ -30,23 +30,23 @@
     "zuul": "zuul -- test/handlebars-layouts.spec.js"
   },
   "devDependencies": {
-    "browserify": "^9.0.8",
-    "consolidate": "^0.12.1",
+    "browserify": "^10.2.4",
+    "consolidate": "^0.13.1",
     "coveralls": "^2.11.2",
     "expect": "^1.6.0",
-    "express": "^4.12.3",
-    "gulp": "^3.8.11",
-    "gulp-istanbul": "^0.8.1",
+    "express": "^4.12.4",
+    "gulp": "^3.9.0",
+    "gulp-istanbul": "^0.10.0",
     "gulp-jscs": "^1.6.0",
-    "gulp-jshint": "^1.10.0",
-    "gulp-mocha": "^2.0.1",
+    "gulp-jshint": "^1.11.0",
+    "gulp-mocha": "^2.1.1",
     "gulp-prettify": "^0.3.0",
     "handlebars": "~3.0",
-    "jshint-stylish": "^1.0.1",
-    "through2": "^0.6.5",
+    "jshint-stylish": "^2.0.0",
+    "through2": "^2.0.0",
     "vinyl-fs": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
-    "zuul": "^2.1.1"
+    "zuul": "^3.0.0"
   },
   "engines": {
     "node": ">= 0.10"

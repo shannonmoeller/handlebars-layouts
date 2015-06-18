@@ -84,8 +84,8 @@ describe('handlebars-layouts spec', function () {
 		it('should use fallback values as needed', function () {
 			var helpers = handlebarsLayouts.register(hbs);
 
-			expect(helpers.content.call(null, 'foo')).toBe('');
-			expect(helpers.content.call({ foo: 'bar' }, 'foo')).toBe('');
+			expect(helpers.content.call(null, 'foo')).toBe(false);
+			expect(helpers.content.call({ foo: 'bar' }, 'foo')).toBe(false);
 
 			expect(count).toBe(1);
 		});
