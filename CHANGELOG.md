@@ -2,7 +2,7 @@
 
 Features:
 
-- The `extend` and `embed` helpers now support a custom context to match the signature and features of the default partials syntax:`{{> }}`.
+- The `extend` and `embed` helpers now support a custom context to match the signature and features of the default partials syntax: `{{> partialName contextObject foo=bar }}`.
 
 ## 3.0.0
 
