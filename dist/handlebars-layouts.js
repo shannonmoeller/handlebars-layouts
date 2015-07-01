@@ -34,7 +34,6 @@ function getActionsByName(context, name) {
 }
 
 function applyAction(val, action) {
-	// jshint validthis:true
 	switch (action.mode) {
 		case 'append': {
 			return val + action.fn(this);
@@ -86,20 +85,27 @@ function layouts(handlebars) {
 		/**
 		 * @method extend
 		 * @param {String} name
+		 * @param {?Object} customContext
 		 * @param {Object} options
 		 * @param {Function(Object)} options.fn
 		 * @param {Object} options.hash
 		 * @return {String} Rendered partial.
 		 */
-		extend: function (name, options) {
+		extend: function (name, customContext, options) {
+			// Make `customContext` optional
+			if (arguments.length < 3) {
+				options = customContext;
+				customContext = null;
+			}
+
 			options = options || {};
 
 			var fn = options.fn || noop,
 				context = Object.create(this || {}),
 				template = handlebars.partials[name];
 
-			// Mix attributes into context
-			mixin(context, options.hash);
+			// Mix custom context and hash into context
+			mixin(context, customContext, options.hash);
 
 			// Partial template required
 			if (template == null) {
@@ -121,6 +127,7 @@ function layouts(handlebars) {
 		/**
 		 * @method embed
 		 * @param {String} name
+		 * @param {?Object} customContext
 		 * @param {Object} options
 		 * @param {Function(Object)} options.fn
 		 * @param {Object} options.hash

@@ -12,14 +12,12 @@ var gulp = require('gulp'),
 gulp.task('default', ['build']);
 
 gulp.task('lint', function () {
-	var jscs = require('gulp-jscs'),
-		jshint = require('gulp-jshint');
+	var eslint = require('gulp-eslint');
 
 	return gulp
 		.src([paths.gulp, paths.src, paths.test])
-		.pipe(jscs())
-		.pipe(jshint())
-		.pipe(jshint.reporter('jshint-stylish'));
+		.pipe(eslint())
+		.pipe(eslint.format());
 });
 
 gulp.task('cover', function () {

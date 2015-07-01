@@ -1,3 +1,4 @@
+/*eslint-env mocha */
 'use strict';
 
 var handlebarsLayouts = require('../index'),
@@ -14,7 +15,7 @@ describe('handlebars-layouts spec', function () {
 				foo: function (data) {
 					count++;
 
-					return (data && data.foo) || '';
+					return data && data.foo || '';
 				}
 			},
 			registerHelper: function (helpers) {

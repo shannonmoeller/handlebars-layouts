@@ -1,17 +1,19 @@
+/*eslint-env mocha */
 'use strict';
 
 var handlebars,
 	handlebarsLayouts,
 	expect = require('expect'),
 	fs = require('fs'),
+	path = require('path'),
 	through = require('through2'),
 	vinylFs = require('vinyl-fs'),
 
 	config = {
-		partials: __dirname + '/fixtures/partials/',
-		fixtures: __dirname + '/fixtures/templates/',
-		expected: __dirname + '/expected/templates/',
-		actual: __dirname + '/actual/templates/'
+		partials: path.join(__dirname, '/fixtures/partials/'),
+		fixtures: path.join(__dirname, '/fixtures/templates/'),
+		expected: path.join(__dirname, '/expected/templates/'),
+		actual: path.join(__dirname, '/actual/templates/')
 	};
 
 describe('handlebars-layouts e2e', function () {
@@ -24,9 +26,10 @@ describe('handlebars-layouts e2e', function () {
 			expected = config.expected + filename;
 
 		function compileFile(file, enc, cb) {
-			// jshint validthis: true
+			var template;
+
 			try {
-				var template = handlebars.compile(String(file.contents));
+				template = handlebars.compile(String(file.contents));
 				file.contents = new Buffer(template(data));
 				this.push(file);
 				cb();
@@ -68,13 +71,13 @@ describe('handlebars-layouts e2e', function () {
 
 		// Register partials
 		handlebars.registerPartial({
-			'deep-a':   read(config.partials + '/deep-a.hbs'),
-			'deep-b':   read(config.partials + '/deep-b.hbs'),
-			'deep-c':   read(config.partials + '/deep-c.hbs'),
-			layout:     read(config.partials + '/layout.hbs'),
+			'deep-a': read(config.partials + '/deep-a.hbs'),
+			'deep-b': read(config.partials + '/deep-b.hbs'),
+			'deep-c': read(config.partials + '/deep-c.hbs'),
+			layout: read(config.partials + '/layout.hbs'),
 			layout2col: read(config.partials + '/layout2col.hbs'),
-			media:      read(config.partials + '/media.hbs'),
-			user:       read(config.partials + '/user.hbs')
+			media: read(config.partials + '/media.hbs'),
+			user: read(config.partials + '/user.hbs')
 		});
 	});
 

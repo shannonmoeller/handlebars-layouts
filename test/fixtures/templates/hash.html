@@ -1,9 +1,9 @@
 {{#extend "layout"}}
 	{{#content "body"}}
 		{{#each users}}
-			{{#embed "user" showBanner=isActive status="active"}}
+			{{#embed "user" name showBanner=isActive status="active"}}
 				{{#content "body"}}
-					<p>{{../../name.first}} {{../../name.last}}</p>
+					<p>{{first}} {{../../name.last}}</p>
 				{{/content}}
 			{{/embed}}
 		{{/each}}
