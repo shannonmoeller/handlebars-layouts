@@ -1,6 +1,6 @@
 # `handlebars-layouts`
 
-[![NPM version][npm-img]][npm-url] [![Downloads][downloads-img]][npm-url] [![Build Status][travis-img]][travis-url] [![Coverage Status][coveralls-img]][coveralls-url] [![Chat][gitter-img]][gitter-url]
+[![NPM version][npm-img]][npm-url] [![Downloads][downloads-img]][npm-url] [![Build Status][travis-img]][travis-url] [![Coverage Status][coveralls-img]][coveralls-url] [![Chat][gitter-img]][gitter-url] [![Tip][gittip-img]][gittip-url]
 
 Handlebars helpers which implement layout blocks similar to Jade, Jinja, Swig, and Twig.
 
@@ -46,9 +46,10 @@ layouts.register(handlebars);
 
 ## Helpers
 
-### `{{#extend [partial] [key=value ...]}}`
+### `{{#extend [partial] [context] [key=value ...]}}`
 
 - `partial` `String` - Name of partial to render.
+- `context` `Object` _(Optional)_ - A custom context for the partial.
 - `attributes` `Object` _(Optional)_ - Arbitrary values that will be added to the partial data context.
 
 Loads a layout partial of a given name and defines block content.
@@ -73,9 +74,10 @@ class Page extends Layout {
 }
 ```
 
-### `{{#embed [partial] [key=value ...]}}`
+### `{{#embed [partial] [context] [key=value ...]}}`
 
 - `partial` `String` - Name of partial to render.
+- `context` `Object` _(Optional)_ - A custom context for the partial.
 - `attributes` `Object` _(Optional)_ - Arbitrary values that will be added to the partial data context.
 
 Allows you to load a partial which itself extends from a layout. Blocks defined in embedded partials will not conflict with those in the primary layout.
@@ -413,7 +415,7 @@ console.log(output);
 
 ## Contribute
 
-[![Tasks][waffle-img]][waffle-url] [![Tip][gittip-img]][gittip-url]
+[![Tasks][waffle-img]][waffle-url]
 
 Standards for this project, including tests, code coverage, and semantics are enforced with a build tool. Pull requests must include passing tests with 100% code coverage and no linting errors.
 

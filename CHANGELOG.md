@@ -1,3 +1,9 @@
+## 3.1.0
+
+Features:
+
+- The `extend` and `embed` helpers now support a custom context to match the signature and features of the default partials syntax:`{{> }}`.
+
 ## 3.0.0
 
 Breaking Changes:
