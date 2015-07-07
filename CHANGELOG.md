@@ -2,7 +2,7 @@
 
 Features:
 
-- The `extend` and `embed` helpers now support a [custom context](http://handlebarsjs.com/partials.html#partial-context) to match the signature and features of the default partials syntax: `{{> partialName contextObject foo=bar }}`.
+- The `extend` and `embed` helpers now support a [custom context](http://handlebarsjs.com/partials.html#partial-context) to match the signature and features of the default partials syntax: `{{> partialName contextObject foo=bar }}`. ([#21](https://github.com/shannonmoeller/handlebars-layouts/pull/21))
 
 ## 3.0.0
 
