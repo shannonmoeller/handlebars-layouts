@@ -120,7 +120,7 @@ function layouts(handlebars) {
 			getStack(context).push(fn);
 
 			// Render partial
-			return template(context);
+			return template(context, options);
 		},
 
 		/**
