@@ -74,6 +74,8 @@ describe('handlebars-layouts e2e', function () {
 			'deep-a': read(config.partials + '/deep-a.hbs'),
 			'deep-b': read(config.partials + '/deep-b.hbs'),
 			'deep-c': read(config.partials + '/deep-c.hbs'),
+			context: read(config.partials + '/context.hbs'),
+			'parent-context': read(config.partials + '/parent-context.hbs'),
 			layout: read(config.partials + '/layout.hbs'),
 			layout2col: read(config.partials + '/layout2col.hbs'),
 			media: read(config.partials + '/media.hbs'),
@@ -89,6 +91,10 @@ describe('handlebars-layouts e2e', function () {
 
 	it('should deeply extend layouts', function (done) {
 		testWithFile('deep-extend.html', {}, done);
+	});
+
+	it('should preserve context', function (done) {
+		testWithFile('context.html', {root: 'root'}, done);
 	});
 
 	it('should embed layouts', function (done) {
