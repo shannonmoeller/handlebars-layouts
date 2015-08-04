@@ -1,7 +1,5 @@
 'use strict';
 
-var clone = require('lodash.clonedeep');
-
 function noop() {
 	return '';
 }
@@ -102,7 +100,7 @@ function layouts(handlebars) {
 			options = options || {};
 
 			var fn = options.fn || noop,
-				context = clone(this || {}),
+				context = handlebars.createFrame(this || {}),
 				template = handlebars.partials[name];
 
 			// Mix custom context and hash into context
@@ -135,7 +133,7 @@ function layouts(handlebars) {
 		 * @return {String} Rendered partial.
 		 */
 		embed: function () {
-			var context = clone(this || {});
+			var context = handlebars.createFrame(this || {});
 
 			// Reset context
 			context.$$layoutStack = null;

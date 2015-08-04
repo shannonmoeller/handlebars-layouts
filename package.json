@@ -50,7 +50,5 @@
   "engines": {
     "node": ">= 0.10"
   },
-  "dependencies": {
-    "lodash.clonedeep": "^3.0.1"
-  }
+  "dependencies": {}
 }
