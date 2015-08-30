@@ -1,3 +1,9 @@
+## 3.1.1
+
+Bugfixes:
+
+- Corrected handling of partial context when the native syntax is used inside of an embed. ([#25](https://github.com/shannonmoeller/handlebars-layouts/pull/25))
+
 ## 3.1.0
 
 Features:
