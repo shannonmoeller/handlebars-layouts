@@ -1,23 +1,19 @@
 /*eslint-env mocha */
 'use strict';
 
-var expect = require('expect');
+var handlebarsLayouts = require('../index'),
+	handlebars = require('handlebars'),
+	expect = require('expect');
 
 describe('handlebars-layouts spec', function () {
-	var count, handlebars, handlebarsLayouts;
+	var count, hbs;
 
 	beforeEach(function () {
 		count = 0;
 
-		// Delete
-		delete require.cache[require.resolve('handlebars')];
-		delete require.cache[require.resolve('../index')];
+		hbs = handlebars.create();
 
-		// Reload
-		handlebars = require('handlebars');
-		handlebarsLayouts = require('../index');
-
-		handlebars.registerPartial('foo', function (data) {
+		hbs.registerPartial('foo', function (data) {
 			count++;
 
 			return data && data.foo || '';
@@ -37,17 +33,20 @@ describe('handlebars-layouts spec', function () {
 
 	describe('register', function () {
 		it('should register helpers', function () {
-			var spy = expect.spyOn(handlebars, 'registerHelper');
+			handlebarsLayouts.register(hbs);
 
-			handlebarsLayouts.register(handlebars);
-			expect(spy.calls.length).toBe(1);
-			spy.restore();
+			expect(hbs.helpers.extend).toBeA(Function);
+			expect(hbs.helpers.embed).toBeA(Function);
+			expect(hbs.helpers.block).toBeA(Function);
+			expect(hbs.helpers.content).toBeA(Function);
+
+			expect(count).toBe(0);
 		});
 	});
 
 	describe('#extend', function () {
 		it('should use fallback values as needed', function () {
-			var helpers = handlebarsLayouts.register(handlebars);
+			var helpers = handlebarsLayouts.register(hbs);
 
 			expect(helpers.extend.call(null, 'foo')).toBe('');
 			expect(helpers.extend.call({ foo: 'bar' }, 'foo')).toBe('bar');
@@ -58,7 +57,7 @@ describe('handlebars-layouts spec', function () {
 
 	describe('#embed', function () {
 		it('should use fallback values as needed', function () {
-			var helpers = handlebarsLayouts.register(handlebars);
+			var helpers = handlebarsLayouts.register(hbs);
 
 			expect(helpers.embed.call(null, 'foo')).toBe('');
 			expect(helpers.embed.call({ foo: 'bar' }, 'foo')).toBe('bar');
@@ -69,7 +68,7 @@ describe('handlebars-layouts spec', function () {
 
 	describe('#block', function () {
 		it('should use fallback values as needed', function () {
-			var helpers = handlebarsLayouts.register(handlebars);
+			var helpers = handlebarsLayouts.register(hbs);
 
 			expect(helpers.block.call(null, 'foo')).toBe('');
 			expect(helpers.block.call({ foo: 'bar' }, 'foo')).toBe('');
@@ -80,7 +79,7 @@ describe('handlebars-layouts spec', function () {
 
 	describe('#content', function () {
 		it('should use fallback values as needed', function () {
-			var helpers = handlebarsLayouts.register(handlebars);
+			var helpers = handlebarsLayouts.register(hbs);
 
 			expect(helpers.content.call(null, 'foo')).toBe(false);
 			expect(helpers.content.call({ foo: 'bar' }, 'foo')).toBe(false);
