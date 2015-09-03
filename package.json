@@ -1,6 +1,6 @@
 {
   "name": "handlebars-layouts",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "description": "Handlebars helpers which implement layout blocks similar to Jade, Jinja, Swig, and Twig.",
   "keywords": [
     "blocks",
