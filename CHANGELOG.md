@@ -1,3 +1,10 @@
+## 3.1.2
+
+Bugfixes:
+
+- Handlebars wasn't playing nice with Object.create, so all cases have been removed in favor of property copying.
+- Now using `handlebars.createFrame` with `options.data` and using the result with partials.
+
 ## 3.1.1
 
 Bugfixes:
