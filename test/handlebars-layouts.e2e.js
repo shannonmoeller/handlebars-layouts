@@ -1,8 +1,8 @@
-/*eslint-env mocha */
+/* eslint-env mocha */
 'use strict';
 
-var handlebars,
-	handlebarsLayouts,
+var handlebarsLayouts = require('../index'),
+	handlebars = require('handlebars'),
 	expect = require('expect'),
 	fs = require('fs'),
 	path = require('path'),
@@ -10,15 +10,17 @@ var handlebars,
 	vinylFs = require('vinyl-fs'),
 
 	config = {
-		partials: path.join(__dirname, '/fixtures/partials/'),
-		fixtures: path.join(__dirname, '/fixtures/templates/'),
-		expected: path.join(__dirname, '/expected/templates/'),
-		actual: path.join(__dirname, '/actual/templates/')
+		partials: path.join(__dirname, 'fixtures/partials/'),
+		fixtures: path.join(__dirname, 'fixtures/templates/'),
+		expected: path.join(__dirname, 'expected/templates/'),
+		actual: path.join(__dirname, 'actual/templates/')
 	};
 
 describe('handlebars-layouts e2e', function () {
-	function read(filepath) {
-		return fs.readFileSync(filepath, 'utf8');
+	var hbs;
+
+	function read() {
+		return fs.readFileSync(path.join.apply(path, arguments), 'utf8');
 	}
 
 	function testWithFile(filename, data, done) {
@@ -29,7 +31,7 @@ describe('handlebars-layouts e2e', function () {
 			var template;
 
 			try {
-				template = handlebars.compile(String(file.contents));
+				template = hbs.compile(String(file.contents));
 				file.contents = new Buffer(template(data));
 				this.push(file);
 				cb();
@@ -58,28 +60,20 @@ describe('handlebars-layouts e2e', function () {
 	}
 
 	beforeEach(function () {
-		// Delete
-		delete require.cache[require.resolve('handlebars')];
-		delete require.cache[require.resolve('../index')];
-
-		// Reload
-		handlebars = require('handlebars');
-		handlebarsLayouts = require('../index');
-
-		// Register helpers
-		handlebars.registerHelper(handlebarsLayouts(handlebars));
+		hbs = handlebars.create();
+		handlebarsLayouts.register(hbs);
 
 		// Register partials
-		handlebars.registerPartial({
-			'deep-a': read(config.partials + '/deep-a.hbs'),
-			'deep-b': read(config.partials + '/deep-b.hbs'),
-			'deep-c': read(config.partials + '/deep-c.hbs'),
-			context: read(config.partials + '/context.hbs'),
-			'parent-context': read(config.partials + '/parent-context.hbs'),
-			layout: read(config.partials + '/layout.hbs'),
-			layout2col: read(config.partials + '/layout2col.hbs'),
-			media: read(config.partials + '/media.hbs'),
-			user: read(config.partials + '/user.hbs')
+		hbs.registerPartial({
+			'deep-a': read(config.partials, 'deep-a.hbs'),
+			'deep-b': read(config.partials, 'deep-b.hbs'),
+			'deep-c': read(config.partials, 'deep-c.hbs'),
+			'parent-context': read(config.partials, 'parent-context.hbs'),
+			context: read(config.partials, 'context.hbs'),
+			layout2col: read(config.partials, 'layout2col.hbs'),
+			layout: read(config.partials, 'layout.hbs'),
+			media: read(config.partials, 'media.hbs'),
+			user: read(config.partials, 'user.hbs')
 		});
 	});
 
@@ -93,14 +87,14 @@ describe('handlebars-layouts e2e', function () {
 		testWithFile('deep-extend.html', {}, done);
 	});
 
-	it('should preserve context', function (done) {
-		testWithFile('context.html', {root: 'root'}, done);
-	});
-
 	it('should embed layouts', function (done) {
 		var data = require('./fixtures/data/users.json');
 
 		testWithFile('embed.html', data, done);
+	});
+
+	it('should preserve context', function (done) {
+		testWithFile('context.html', {root: 'root'}, done);
 	});
 
 	it('should append content', function (done) {

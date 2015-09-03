@@ -26,10 +26,12 @@
   },
   "scripts": {
     "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "lint": "eslint index.js gulpfile.js test/*.js",
     "test": "gulp test",
     "zuul": "zuul -- test/handlebars-layouts.spec.js"
   },
   "devDependencies": {
+    "babel-eslint": "^4.1.1",
     "browserify": "^10.2.4",
     "consolidate": "^0.13.1",
     "coveralls": "^2.11.2",

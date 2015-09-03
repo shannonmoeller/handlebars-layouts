@@ -3,22 +3,27 @@
 var handlebarsLayouts = require('../index'),
 	consolidate = require('consolidate'),
 	express = require('express'),
-	fs = require('fs'),
 	handlebars = require('handlebars'),
+	fs = require('fs'),
+	path = require('path'),
 	data = require('./fixtures/data/users.json'),
-	fixtures = process.cwd() + '/fixtures',
-	views = fixtures + '/templates',
-	partials = fixtures + '/partials';
+	fixtures = path.join(process.cwd(), 'fixtures'),
+	views = path.join(fixtures, 'templates'),
+	partials = path.join(fixtures, 'partials');
+
+function read(file) {
+	return fs.readFileSync(path.join(partials, file), 'utf8');
+}
 
 // Register helpers
-handlebars.registerHelper(handlebarsLayouts(handlebars));
+handlebarsLayouts.register(handlebars);
 
 // Register partials
 handlebars.registerPartial({
-	layout:     fs.readFileSync(partials + '/layout.hbs', 'utf8'),
-	layout2col: fs.readFileSync(partials + '/layout2col.hbs', 'utf8'),
-	media:      fs.readFileSync(partials + '/media.hbs', 'utf8'),
-	user:       fs.readFileSync(partials + '/user.hbs', 'utf8')
+	layout: read('layout.hbs'),
+	layout2col: read('layout2col.hbs'),
+	media: read('media.hbs'),
+	user: read('user.hbs')
 });
 
 // Server

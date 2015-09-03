@@ -1,5 +1,6 @@
 {{#extend "layout"}}
 	{{#content "body"}}
+		{{ title }}
 		{{#each users}}
 			{{#embed "user" name showBanner=isActive status="active"}}
 				{{#content "body"}}
