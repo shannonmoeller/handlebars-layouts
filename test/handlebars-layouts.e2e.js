@@ -119,6 +119,13 @@ describe('handlebars-layouts e2e', function () {
 		testWithFile('hash.html', data, done);
 	});
 
+	it('should pass through non-object values', function (done) {
+		var data = Object.create(null);
+
+		data.key = 'value';
+		testWithFile('non-object.html', data, done);
+	});
+
 	it('should throw an error if partial is not registered', function (done) {
 		testWithFile('error.html', {}, done);
 	});
