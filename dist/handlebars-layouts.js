@@ -34,15 +34,21 @@ function getActionsByName(context, name) {
 }
 
 function applyAction(val, action) {
+	var context = this;
+
+	function fn() {
+		return action.fn(context, action.options);
+	}
+
 	switch (action.mode) {
 		case 'append': {
-			return val + action.fn(this);
+			return val + fn();
 		}
 		case 'prepend': {
-			return action.fn(this) + val;
+			return fn() + val;
 		}
 		case 'replace': {
-			return action.fn(this);
+			return fn();
 		}
 		default: {
 			return val;
@@ -101,11 +107,9 @@ function layouts(handlebars) {
 			options = options || {};
 
 			var fn = options.fn || noop,
-				context = handlebars.createFrame(this || {}),
+				context = mixin({}, this, customContext, options.hash),
+				data = handlebars.createFrame(options.data),
 				template = handlebars.partials[name];
-
-			// Mix custom context and hash into context
-			mixin(context, customContext, options.hash);
 
 			// Partial template required
 			if (template == null) {
@@ -121,7 +125,7 @@ function layouts(handlebars) {
 			getStack(context).push(fn);
 
 			// Render partial
-			return template(context);
+			return template(context, { data: data });
 		},
 
 		/**
@@ -134,7 +138,7 @@ function layouts(handlebars) {
 		 * @return {String} Rendered partial.
 		 */
 		embed: function () {
-			var context = handlebars.createFrame(this || {});
+			var context = mixin({}, this || {});
 
 			// Reset context
 			context.$$layoutStack = null;
@@ -155,13 +159,14 @@ function layouts(handlebars) {
 			options = options || {};
 
 			var fn = options.fn || noop,
+				data = handlebars.createFrame(options.data),
 				context = this || {};
 
 			applyStack(context);
 
 			return getActionsByName(context, name).reduce(
 				applyAction.bind(context),
-				fn(context)
+				fn(context, { data: data })
 			);
 		},
 
@@ -178,6 +183,7 @@ function layouts(handlebars) {
 			options = options || {};
 
 			var fn = options.fn,
+				data = handlebars.createFrame(options.data),
 				hash = options.hash || {},
 				mode = hash.mode || 'replace',
 				context = this || {};
@@ -191,6 +197,7 @@ function layouts(handlebars) {
 
 			// Setter
 			getActionsByName(context, name).push({
+				options: { data: data },
 				mode: mode.toLowerCase(),
 				fn: fn
 			});
