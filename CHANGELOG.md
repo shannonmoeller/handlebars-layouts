@@ -1,3 +1,9 @@
+## 3.1.3
+
+Bugfixes:
+
+- Added support for objects with a null prototype. ([#27](https://github.com/shannonmoeller/handlebars-layouts/issues/27), [#28](https://github.com/shannonmoeller/handlebars-layouts/pull/28))
+
 ## 3.1.2
 
 Bugfixes:
