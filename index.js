@@ -69,7 +69,7 @@ function mixin(target) {
 
 		for (key in arg) {
 			// istanbul ignore else
-			if (arg.hasOwnProperty(key)) {
+			if (Object.prototype.hasOwnProperty.call(arg, key)) {
 				target[key] = arg[key];
 			}
 		}
