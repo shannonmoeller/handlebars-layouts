@@ -123,6 +123,7 @@ describe('handlebars-layouts e2e', function () {
 		var data = Object.create(null);
 
 		data.key = 'value';
+
 		testWithFile('non-object.html', data, done);
 	});
 

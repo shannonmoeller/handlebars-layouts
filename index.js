@@ -1,5 +1,7 @@
 'use strict';
 
+var hasOwn = Object.prototype.hasOwnProperty;
+
 function noop() {
 	return '';
 }
@@ -43,12 +45,15 @@ function applyAction(val, action) {
 		case 'append': {
 			return val + fn();
 		}
+
 		case 'prepend': {
 			return fn() + val;
 		}
+
 		case 'replace': {
 			return fn();
 		}
+
 		default: {
 			return val;
 		}
@@ -69,7 +74,7 @@ function mixin(target) {
 
 		for (key in arg) {
 			// istanbul ignore else
-			if (Object.prototype.hasOwnProperty.call(arg, key)) {
+			if (hasOwn.call(arg, key)) {
 				target[key] = arg[key];
 			}
 		}
