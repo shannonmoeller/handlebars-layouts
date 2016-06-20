@@ -1,7 +1,9 @@
 language: node_js
 node_js:
-  - node
-  - iojs
+  - '6'
+  - '5'
+  - '4'
+  - '0.12'
 after_script:
   - npm run coveralls
   - npm run zuul
