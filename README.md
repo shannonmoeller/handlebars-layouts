@@ -415,8 +415,6 @@ console.log(output);
 
 ## Contribute
 
-[![Tasks][waffle-img]][waffle-url]
-
 Standards for this project, including tests, code coverage, and semantics are enforced with a build tool. Pull requests must include passing tests with 100% code coverage and no linting errors.
 
 ## Test
@@ -436,7 +434,5 @@ Licensed under [MIT](http://shannonmoeller.com/mit.txt)
 [downloads-img]: http://img.shields.io/npm/dm/handlebars-layouts.svg?style=flat-square
 [npm-img]:       http://img.shields.io/npm/v/handlebars-layouts.svg?style=flat-square
 [npm-url]:       https://npmjs.org/package/handlebars-layouts
-[travis-img]:    http://img.shields.io/travis/shannonmoeller/handlebars-layouts.svg?style=flat-square
+[travis-img]:    http://img.shields.io/travis/shannonmoeller/handlebars-layouts/master.svg?style=flat-square
 [travis-url]:    https://travis-ci.org/shannonmoeller/handlebars-layouts
-[waffle-img]:    http://img.shields.io/github/issues/shannonmoeller/handlebars-layouts.svg?style=flat-square
-[waffle-url]:    http://waffle.io/shannonmoeller/handlebars-layouts
