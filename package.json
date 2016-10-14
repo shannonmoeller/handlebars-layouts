@@ -26,6 +26,7 @@
     "url": "https://github.com/shannonmoeller/handlebars-layouts.git"
   },
   "scripts": {
+    "gulp": "gulp",
     "prepublish": "gulp build",
     "report": "cat ./coverage/lcov.info | coveralls",
     "test": "gulp test",
