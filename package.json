@@ -26,10 +26,10 @@
     "url": "https://github.com/shannonmoeller/handlebars-layouts.git"
   },
   "scripts": {
-    "coveralls": "cat ./coverage/lcov.info | coveralls",
-    "lint": "eslint index.js gulpfile.js test/*.js",
+    "prepublish": "gulp build",
+    "report": "cat ./coverage/lcov.info | coveralls",
     "test": "gulp test",
-    "zuul": "zuul -- test/handlebars-layouts.spec.js"
+    "zuul": "zuul --local -- test/handlebars-layouts.spec.js"
   },
   "devDependencies": {
     "babel-eslint": "^4.1.1",
