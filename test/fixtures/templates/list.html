@@ -1,0 +1,14 @@
+{{#extend "list"}}
+	{{#content "list-content" mode="data" as="first-list-items"}}
+		<p>First Item</p>
+	{{/content}}
+	{{#content "list-content" mode="data" as="first-list-items"}}
+		<p>Second Item</p>
+	{{/content}}
+	{{#content "list-content" mode="data" as="first-list-items"}}
+		<p>Third Item</p>
+	{{/content}}
+	{{#content "list-content" mode="data"}}
+		<p>This part will go to "block-items" array</p>
+	{{/content}}
+{{/extend}}

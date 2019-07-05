@@ -1,3 +1,4 @@
+
 # `handlebars-layouts`
 
 [![NPM version][npm-img]][npm-url] [![Downloads][downloads-img]][npm-url] [![Build Status][travis-img]][travis-url] [![Coverage Status][coveralls-img]][coveralls-url] [![Tip][amazon-img]][amazon-url]
@@ -128,7 +129,7 @@ class Page extends Layout {
 
 - `name` `String` - Block identifier.
 
-Defines a named block, with optional default content. Blocks may have content appended, prepended, or replaced entirely when extending or embedding. You may append and prepend to the same block multiple times.
+Defines a named block, with optional default content. Blocks may have content appended, prepended, or replaced entirely when extending or embedding. You may append and prepend to the same block multiple times. Blocks can also get content in a form of an array without having their initial content changed.
 
 ```handlebars
 {{#block "header"}}
@@ -144,12 +145,14 @@ Defines a named block, with optional default content. Blocks may have content ap
 {{/block}}
 ```
 
-### `{{#content [name] mode="(append|prepend|replace)"}}`
+### `{{#content [name] mode="(append|prepend|replace|data)" as=[value]}}`
 
 - `name` `String` - Identifier of the block to modify.
-- `mode` `String` _(Optional)_ - Means of providing block content. Default: `replace`.
+- `mode` `String` _(Optional)_ - Means of providing block content or setting context data. Default: `replace`.
+- `as` `String` _(Optional)_ - Array name for context data. Default: `block-items`.
 
 Sets block content, optionally appending or prepending using the `mode` attribute.
+With `data` mode, new content will be pushed to an array using the `as` value as the array name and **block's initial content will not be altered**.
 
 Layout:
 
@@ -164,6 +167,14 @@ Layout:
         {{#block "main"}}
             <p>Lorem ipsum.</p>
         {{/block}}
+
+        <ul>
+        {{#block "list"}}
+            {{#each "list-items"}}
+                <li>{{.}}</li>
+            {{/each}}
+        {{/block}}
+        </ul>
 
         {{#block "footer"}}
             <p>&copy; 1999</p>
@@ -185,6 +196,14 @@ Page:
         <p>Dolor sit amet.</p>
     {{/content}}
 
+    {{#content "list" mode="push" as="list-items"}}
+        <p>Item 1</p>
+    {{/content}}
+
+    {{#content "list" mode="push" as="list-items"}}
+        <p>Item 2</p>
+    {{/content}}
+
     {{#content "footer" mode="prepend"}}
         <p>MIT License</p>
     {{/content}}
@@ -202,6 +221,11 @@ Output:
 
         <p>Lorem ipsum.</p>
         <p>Dolor sit amet.</p>
+
+        <ul>
+            <li> <p>Item 1</p> </li>
+            <li> <p>Item 2</p> </li>
+        </ul>
 
         <p>MIT License</p>
         <p>&copy; 1999</p>

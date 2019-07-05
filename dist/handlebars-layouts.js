@@ -55,6 +55,14 @@ function applyAction(val, action) {
 			return fn();
 		}
 
+		case 'push': {
+			if (!Array.isArray(val)) {
+				val = new Array(val);
+			}
+			val.push(fn());
+			return val;
+		}
+
 		default: {
 			return val;
 		}
@@ -165,14 +173,22 @@ function layouts(handlebars) {
 
 			var fn = options.fn || noop,
 				data = handlebars.createFrame(options.data),
-				context = this || {};
+				context = this || {},
+				result = noop;
 
 			applyStack(context);
 
-			return getActionsByName(context, name).reduce(
+			result = getActionsByName(context, name).reduce(
 				applyAction.bind(context),
 				fn(context, { data: data })
 			);
+
+			if (Array.isArray(result)) {
+				context.items = result;
+				result = fn(context, { data: data });
+			}
+
+			return result;
 		},
 
 		/**

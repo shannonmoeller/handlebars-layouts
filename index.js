@@ -54,6 +54,12 @@ function applyAction(val, action) {
 			return fn();
 		}
 
+		case 'data': {
+			if (context[action.as] === undefined) context[action.as] = [];
+			context[action.as].push(fn());
+			context.$$hasData = true;
+		}
+
 		default: {
 			return val;
 		}
@@ -164,14 +170,19 @@ function layouts(handlebars) {
 
 			var fn = options.fn || noop,
 				data = handlebars.createFrame(options.data),
-				context = this || {};
+				context = this || {},
+				result = noop;
 
 			applyStack(context);
 
-			return getActionsByName(context, name).reduce(
+			result = getActionsByName(context, name).reduce(
 				applyAction.bind(context),
 				fn(context, { data: data })
 			);
+
+			if (context.$$hasData) result = fn(context, { data: data });
+
+			return result;
 		},
 
 		/**
@@ -190,6 +201,7 @@ function layouts(handlebars) {
 				data = handlebars.createFrame(options.data),
 				hash = options.hash || {},
 				mode = hash.mode || 'replace',
+				as = hash.mode === 'data' ? hash.as || 'block-items' : noop,
 				context = this || {};
 
 			applyStack(context);
@@ -203,6 +215,7 @@ function layouts(handlebars) {
 			getActionsByName(context, name).push({
 				options: { data: data },
 				mode: mode.toLowerCase(),
+				as: as,
 				fn: fn
 			});
 		}

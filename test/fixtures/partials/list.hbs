@@ -1,0 +1,12 @@
+<div class="list">
+	{{#block "list-content"}}
+		<h2>First List</h2>
+		{{#each first-list-items}}
+			<div class="list__item">{{{.}}}</div>
+		{{/each}}
+		<h2>Second List</h2>
+		{{#each block-items}}
+			<div class="list__item">{{{.}}}</div>
+		{{/each}}
+	{{/block}}
+</div>

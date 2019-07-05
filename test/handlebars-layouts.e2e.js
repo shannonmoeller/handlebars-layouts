@@ -73,7 +73,8 @@ describe('handlebars-layouts e2e', function () {
 			layout2col: read(config.partials, 'layout2col.hbs'),
 			layout: read(config.partials, 'layout.hbs'),
 			media: read(config.partials, 'media.hbs'),
-			user: read(config.partials, 'user.hbs')
+			user: read(config.partials, 'user.hbs'),
+			list: read(config.partials, 'list.hbs')
 		});
 	});
 
@@ -117,6 +118,10 @@ describe('handlebars-layouts e2e', function () {
 		var data = require('./fixtures/data/users.json');
 
 		testWithFile('hash.html', data, done);
+	});
+
+	it('should pass content in items array', function (done) {
+		testWithFile('list.html', { title: 'list' }, done);
 	});
 
 	it('should pass through non-object values', function (done) {
