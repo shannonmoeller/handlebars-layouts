@@ -55,12 +55,10 @@ function applyAction(val, action) {
 			return fn();
 		}
 
-		case 'push': {
-			if (!Array.isArray(val)) {
-				val = new Array(val);
-			}
-			val.push(fn());
-			return val;
+		case 'data': {
+			if (context[action.as] === undefined) context[action.as] = [];
+			context[action.as].push(fn());
+			context.$$hasData = true;
 		}
 
 		default: {
@@ -183,10 +181,7 @@ function layouts(handlebars) {
 				fn(context, { data: data })
 			);
 
-			if (Array.isArray(result)) {
-				context.items = result;
-				result = fn(context, { data: data });
-			}
+			if (context.$$hasData) result = fn(context, { data: data });
 
 			return result;
 		},
@@ -207,6 +202,7 @@ function layouts(handlebars) {
 				data = handlebars.createFrame(options.data),
 				hash = options.hash || {},
 				mode = hash.mode || 'replace',
+				as = hash.mode === 'data' ? hash.as || 'block-items' : noop,
 				context = this || {};
 
 			applyStack(context);
@@ -220,6 +216,7 @@ function layouts(handlebars) {
 			getActionsByName(context, name).push({
 				options: { data: data },
 				mode: mode.toLowerCase(),
+				as: as,
 				fn: fn
 			});
 		}
